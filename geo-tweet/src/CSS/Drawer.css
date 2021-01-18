@@ -1,0 +1,12 @@
+.gap { 
+    width:100%; 
+    height:70px; 
+} 
+
+.layer {
+    margin-bottom: 7%;
+}
+
+.toggleText {
+    font-size: 9px;
+}

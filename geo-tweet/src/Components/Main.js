@@ -31,9 +31,11 @@ import Grid from '@material-ui/core/Grid';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AdjustIcon from '@material-ui/icons/Adjust';
+import ToggleButtons from "./Toggle"
+import '../CSS/Drawer.css'
 
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -164,25 +166,31 @@ export default function PersistentDrawerLeft() {
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
-        </div>
+        </div >
         <Divider />
         <List>
         <Container maxWidth="sm">
-            <TextField id="standard-basic" label="KeyWords" />
             <Grid
+                className = "layer"
                 container
                 direction="column"
                 justify="center"
                 alignItems="flex-start"
             >
-        <FormGroup row>
+
+        <TextField id="standard-basic" label="KeyWords" />
+        <FormGroup row >   
             <FormControlLabel
-                control={<Switch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
+                control={
+                <Switch 
+                checked={state.checkedA} 
+                onChange={handleChange} 
+                name ="checkedA" />}
                 label="Cluster Layer" color = "primary"
             />
             <FormControlLabel
-            control={
-            <Switch
+                control={
+                <Switch 
                 checked={state.checkedB}
                 onChange={handleChange}
                 name="checkedB"
@@ -191,36 +199,16 @@ export default function PersistentDrawerLeft() {
             }
                 label="Heatmap Layer"
             />
-
-        {/* <ToggleButtonGroup
-            value={alignment}
-            exclusive
-            onChange={handleAlignment}
-            aria-label="text alignment"
-        > */}
-            {/* <ToggleButton value="left" aria-label="left aligned">
-            <AdjustIcon />
-            </ToggleButton> */}
-            {/* <ToggleButton value="center" aria-label="centered"> */}
-            {/* <InsertEmoticonIcon/> */}
-            {/* </ToggleButton> */}
-        {/* </ToggleButtonGroup> */}
-            
-        </FormGroup>
+        </FormGroup>   
         </Grid>
+
             <FormControl component="fieldset">
-            <FormLabel component="legend">View</FormLabel>
-            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={radioChange}>
-                <FormControlLabel value="female" control={<Radio />} label="Standard View" />
-                <FormControlLabel value="male" control={<Radio />} label="Santimental View" />
-            </RadioGroup>
-        </FormControl>
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
+              <FormLabel component="legend">View</FormLabel>
+              <br></br>
+              <div className = "gap">
+                 <ToggleButtons></ToggleButtons>
+              </div>
+            </FormControl>
 
         </Container>
         </List>
@@ -240,6 +228,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
+
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
