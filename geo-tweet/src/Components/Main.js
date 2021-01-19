@@ -30,7 +30,7 @@ import ToggleButtons from "./Toggle"
 import '../CSS/Drawer.css'
 import {Map} from "./Map"
 
-const drawerWidth = "45vmin";
+const drawerWidth = "50vmin";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,6 +111,7 @@ export default function PersistentDrawerLeft() {
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
 
 
   return (
