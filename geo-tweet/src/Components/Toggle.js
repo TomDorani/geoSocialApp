@@ -4,6 +4,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import AdjustIcon from '@material-ui/icons/Adjust';
 import MoodIcon from '@material-ui/icons/Mood';
 import '../CSS/Drawer.css'
+import Typography from '@material-ui/core/Typography';
 
 
 export default function ToggleButtons() {
@@ -23,10 +24,11 @@ export default function ToggleButtons() {
 
       <ToggleButton value="Adjust" aria-label="Adjust">
         <AdjustIcon/>
-        <i className = "toggleText">  Standard View</i>
+        <Typography className="toggleText">Standard View</Typography>
+         
       </ToggleButton>
       <ToggleButton value="Mood" aria-label="Mood">
-        <i className = "toggleText">  Santimental View</i>
+      <Typography className="toggleText">Santimental View</Typography>
         <MoodIcon />
       </ToggleButton>
     </ToggleButtonGroup>
