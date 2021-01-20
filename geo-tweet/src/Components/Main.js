@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -29,6 +29,7 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import ToggleButtons from "./Toggle"
 import '../CSS/Drawer.css'
 import {Map} from "./Map"
+import { Marker } from 'react-leaflet';
 
 const drawerWidth = "50vmin";
 
@@ -91,9 +92,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+const [state, setState] = useState({
+  checkedA: true,
+  checkedB: true,
+});
+//const [markers, setMarkers]=useState([]);
+
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+ 
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,16 +113,27 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
-
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
 
+  
+
+  const  m = [
+        {
+        lat: 51.505,
+        lng: -0.09,
+        zoom: 1,
+        zoomOffset: 1
+        },
+        {
+            lat: 20.505,
+            lng: -0.09,
+            zoom: 1,
+            zoomOffset: 1
+            },
+        ]
 
   return (
     <div className={classes.root}>
