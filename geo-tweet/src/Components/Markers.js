@@ -1,9 +1,7 @@
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom'
 import {Marker, Popup} from 'react-leaflet'
-
-const EventsCreator = (state) => {
-
 
   // const latRef = useRef(null);
   // const LngRef = useRef(null);
@@ -17,21 +15,26 @@ const EventsCreator = (state) => {
   //   zoomRef.current = item.zoom;
   //   zoomOffRef.current = item.zoomOffset;
   // }
-
-  const markers = state.markersArr.map((item, index) => {
+const EventsCreator = (state) => {
+  console.log(state);
+  const markers = state.markersArr.map((item) => {
+    if(item.coordinates){
     console.log(item)
-    const position = [item.lat, item.lng]
+    const position = [item.coordinates.coordinates[1], item.coordinates.coordinates[0]]
+    console.log(position)
+    const text=`"`+ item.text +`"`
+    const authur=item.author+" says:"
     console.log(position)
     return (
 
       <Marker position={position}>
       <Popup>
-          A pretty CSS3 popup.
+       {authur}
           <br/>
-          Easily customizable.
+          {text}
       </Popup>
       </Marker>
-    )
+    )}
   })
 
   return(
@@ -44,10 +47,3 @@ const EventsCreator = (state) => {
 }
 
 export default EventsCreator;
-
-// {
-//   lat: 51.505,
-//   lng: -0.09,
-//   zoom: 1,
-//   zoomOffset: 1
-//   },
