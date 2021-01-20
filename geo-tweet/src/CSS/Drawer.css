@@ -14,3 +14,8 @@
 #mapid {
 	height: 700px;
 }
+.makeStyles-content-9 {
+	padding: 6px;
+	flex-grow: 1;
+	position: absolute;
+}

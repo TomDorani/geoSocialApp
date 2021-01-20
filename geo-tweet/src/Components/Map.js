@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
 import Markers from "./Markers"
-
+import "./../CSS/Drawer.css"
 export class Map extends Component {
     state = { 
         markersData : [
@@ -27,16 +27,20 @@ export class Map extends Component {
         const w = window.innerWidth
         return (
             <div style={{
-                paddingBottom: "5%",
-                height: h,
-                width: w/1.5
+                paddingBottom: "50%",
+                position: "absolute",
             }}>
-                <MapContainer style={{
-                paddingBottom: "5%",
-                height: "900px",
-                width: "1100px"}} center={position} zoom={this.state.markersData[0].zoom} zoomOffset={this.state.markersData[0].zoomOffset}>
+                <MapContainer
+                 style={{
+                    height: h*0.88,
+                    width: w*0.99,
+                    position: "initial",
+                        outline: "auto",}}
+                center={position}
+                zoom={3}
+                zoomOffset={this.state.markersData[0].zoomOffset}>
                     <TileLayer
-                        attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                        attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> "
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                     <Markers markersArr = {this.state.markersData}></Markers>
                     {/* <Marker position={position}>
