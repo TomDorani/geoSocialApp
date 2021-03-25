@@ -1,5 +1,5 @@
 
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect ,useRef} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -30,8 +30,14 @@ import ToggleButtons from "./Toggle"
 import '../CSS/Drawer.css'
 import {Map} from "./Map"
 import { Marker } from 'react-leaflet';
+import Modal from '@material-ui/core/Modal';
+import BasicTable from './Table'
+
+
+
 
 const drawerWidth = "50vmin";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -91,16 +97,95 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
+
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
 export default function PersistentDrawerLeft() {
 const [state, setState] = useState({
   checkedA: true,
   checkedB: true,
 });
-//const [markers, setMarkers]=useState([]);
 
-  const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalStyle] = React.useState(getModalStyle);
+  
+  const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
+
+
+  const handleModalOpen = () => {
+
+    setModalIsOpen(true);
+    console.log("open")
+  };
+
+  const handleModalClose = () => {
+    setModalIsOpen(false);
+  };
+
+  const contactUsOpen = () => {
+    console.log("Contact Us")
+    setContactUsIsOpen(true)
+
+  };
+
+  const contactUsClose = () => {
+    console.log("Contact Us")
+    setContactUsIsOpen(false)
+
+  };
+
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 1100,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(3, 4, 3),
+    },
+  }));
+
+  const classes = useStyles();
+
+
+  const body = (
+    <div style={modalStyle} className={classes.paper} >
+      <h2 id="simple-modal-title">Statistics</h2>
+      <BasicTable/>
+    </div>
+  );
+
+  const contactUsBody = (
+    <div style={modalStyle} className={classes.paper} >
+      <h2 id="contact-us-title">Contact Us</h2>
+       <TextField id="outlined-basic" label="Subject" />
+      <h4 id="contact-us-text-title">Please provide a brief description of your issue.</h4>
+
+      <TextField
+          id="outlined-multiline-static"
+          multiline
+          rows={4}
+          lable="Brief Description"
+          variant="outlined"
+
+          
+        />
+
+    </div>
+  );
+  
 
  
 
@@ -220,12 +305,14 @@ const [state, setState] = useState({
         </List>
         <Divider />
         <List>
-          {['Show Statistics', ''].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <EqualizerIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button key = {'Show Statistics'} onClick = {handleModalOpen}>
+          <ListItemIcon><EqualizerIcon /></ListItemIcon>
+          <ListItemText primary={'Show Statistics'} />
+          </ListItem>
+          <ListItem button key = {'Contact Us'} onClick = {contactUsOpen}>
+          <ListItemIcon><MailIcon /></ListItemIcon>
+          <ListItemText primary={'Contact Us'} />
+          </ListItem>
         </List>
       </Drawer>
       <main
@@ -237,6 +324,23 @@ const [state, setState] = useState({
         <Map/>
         
       </main>
+      
+      <Modal  id = "modal" open={modalIsOpen} onClose ={handleModalClose}
+          // aria-labelledby="simple-modal-title"
+          // aria-describedby="simple-modal-description"
+  
+        >
+        {body}
+      </Modal>
+
+      <Modal  id = "contactUsModal" open={contactUsIsOpen} onClose ={contactUsClose}
+          // aria-labelledby="simple-modal-title"
+          // aria-describedby="simple-modal-description"
+  
+        >
+        {contactUsBody}
+      </Modal>
+
     </div>
   );
 }
