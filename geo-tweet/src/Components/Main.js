@@ -28,10 +28,14 @@ import Grid from '@material-ui/core/Grid';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import ToggleButtons from "./Toggle"
 import '../CSS/Drawer.css'
-import {Map} from "./Map"
+import {Map } from "./Map"
 import { Marker } from 'react-leaflet';
 import Modal from '@material-ui/core/Modal';
 import BasicTable from './Table'
+import Button from '@material-ui/core/Button';
+import Bars from "./Bars";
+import L from 'leaflet';
+import "leaflet.markercluster";
 
 
 
@@ -73,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
+    
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -80,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -112,8 +117,11 @@ function getModalStyle() {
 
 export default function PersistentDrawerLeft() {
 const [state, setState] = useState({
-  checkedA: true,
-  checkedB: true,
+  Search : '',
+  checkedA: false,
+  checkedB: false,
+  allTweets : [],
+  relevantTweets : [],
 });
 
   const theme = useTheme();
@@ -179,13 +187,66 @@ const [state, setState] = useState({
           rows={4}
           lable="Brief Description"
           variant="outlined"
-
+          style = {{paddingRight: '60%'}}
           
         />
+        <div>
+        <Button variant="outlined" size="medium" color="black" style = {{marginLeft : '90%' }}>
+          Submit
+        </Button>
+        </div>
+
 
     </div>
   );
+
+
   
+  const checkSearch = (event) => {
+
+    state.relevantTweets =[];
+
+    state.allTweets = [
+      {
+        Height : 0, 
+        Width : 0,
+        text : 'fa fa bi fa ti na mi',
+        coordinates : [-79.9372, 32.7872] , 
+
+      },
+      {
+        Height : 0, 
+        Width : 0,
+        text : 'fa fa bi fa ti na mi',
+        coordinates : [-78.9372, 33.7872] , 
+
+      }
+  ]
+
+    let count = 0;
+    var words = event.target.value;
+    words = words.split(" ")
+    console.log(words);
+    for(let tweet of state.allTweets){
+      count = 0;
+      for(let word of words){
+        tweet.text = " " + tweet.text + " ";
+        var flag = tweet.text.includes(" " +word+ " ");
+        if(flag == true){
+          count +=1;
+          break;
+        }
+        
+      }
+      console.log(count);
+      console.log(words.length/2);
+      if(count >= words.length/2){
+        state.relevantTweets.push(tweet);
+      }
+
+    }
+    console.log(state);
+  }
 
  
 
@@ -199,7 +260,34 @@ const [state, setState] = useState({
   };
 
   const handleChange = (event) => {
+    state.relevantTweets =[];
+
+    state.allTweets = [
+      {
+        Height : 0, 
+        Width : 0,
+        text : 'fa fa bi fa ti na mi',
+        coordinates : [-79.9372, 32.7872] , 
+
+      },
+      {
+        Height : 0, 
+        Width : 0,
+        text : 'fa fa bi fa ti na mi',
+        coordinates : [-78.9372, 33.7872] , 
+
+      }
+  ]
+    console.log("here");
+    var cluster = L.markerClusterGroup();
     setState({ ...state, [event.target.name]: event.target.checked });
+    for(let tweet of state.allTweets){
+      cluster.addLayer(L.marker(tweet.coordinates));
+    }
+
+    console.log(cluster);
+    state.cluster = cluster;
+
   };
 
 
@@ -244,19 +332,23 @@ const [state, setState] = useState({
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
+      <Drawer        
         anchor="left"
         open={open}
         classes={{
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+
+        <div className = "DrawerHeader">
+        <Typography variant="h6" noWrap style ={{padding: "25px" , marginInlineEnd:"45%"}} >
+            Geo Tweet
+          </Typography>
+        <div className = "DrawerButton" >
+          <IconButton onClick={handleDrawerClose} style ={{color: "white"}}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
+        </div>
         </div>
         <Divider />
         <List>
@@ -269,15 +361,16 @@ const [state, setState] = useState({
                 alignItems="flex-start"
             >
 
-        <TextField id="standard-basic" label="KeyWords" />
-        <FormGroup row >   
+        <TextField  id="standard-basic" label="KeyWords" onChange = {checkSearch} />
+        <FormGroup   className = "switch">   
             <FormControlLabel
                 control={
                 <Switch 
                 checked={state.checkedA} 
                 onChange={handleChange} 
-                name ="checkedA" />}
-                label="Cluster Layer" color = "primary"
+                name ="checkedA"
+                color = "primary" />}
+                label="Cluster Layer" 
             />
             <FormControlLabel
                 control={
@@ -286,7 +379,7 @@ const [state, setState] = useState({
                 onChange={handleChange}
                 name="checkedB"
                 color="primary"
-            />
+                />
             }
                 label="Heatmap Layer"
             />
@@ -300,7 +393,6 @@ const [state, setState] = useState({
                  <ToggleButtons></ToggleButtons>
               </div>
             </FormControl>
-
         </Container>
         </List>
         <Divider />
@@ -320,8 +412,8 @@ const [state, setState] = useState({
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
-        <Map/>
+        <div className={classes.drawerHeader} style = {{marginTop: '4%'}} />
+        <Map />
         
       </main>
       

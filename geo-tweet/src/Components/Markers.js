@@ -16,15 +16,12 @@ import {Marker, Popup} from 'react-leaflet'
   //   zoomOffRef.current = item.zoomOffset;
   // }
 const EventsCreator = (state) => {
-  console.log(state);
   const markers = state.markersArr.map((item) => {
     if(item.coordinates){
-    console.log(item)
-    const position = [item.coordinates.coordinates[1], item.coordinates.coordinates[0]]
-    console.log(position)
+    const position = [item.coordinates[1], item.coordinates[0]]
     const text=`"`+ item.text +`"`
     const authur=item.author+" says:"
-    console.log(position)
+
     return (
 
       <Marker position={position}>
