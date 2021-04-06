@@ -12,35 +12,40 @@ export class Map extends Component {
 		super(props);
 
 		this.state = {
+			datamarkers: [],
 			markers: [],
 			search: props.search,
 		};
 	}
-	shouldComponentUpdate() {
-		console.log("shmap.props:", this.props);
-		return true;
-	}
+	// shouldComponentUpdate() {
+	// 	console.log("shmap.props:", this.props);
+	// 	return true;
+	// }
 	componentDidUpdate() {
 		//	console.log(this.state.markers.filter((tweet) =>tweet))
 		// this.state.markers=this.state.markers.map()
-		let allTweets = this.state.markers;
+		let allTweets = this.state.datamarkers;
 		let filteredTweets = [];
 		let count = 0;
-		for (let tweet of allTweets) {
-			count = 0;
-			for (let word of this.state.search) {
-				tweet.text = " " + tweet.text + " ";
-				var flag = tweet.text.includes(" " + word + " ");
-				if (flag === true) {
-					count += 1;
-					break;
-				}
-			}
-			if (count >= this.state.search.length / 2) {
-				filteredTweets.push(tweet);
-			}
-		}
-		this.state.markers = filteredTweets;
+		// if (this.state.search == null) {
+		// 	this.state.markers = filteredTweets;
+		// 	return;
+		// }
+		// allTweets.forEach((tweet) => {
+		// 	count = 0;
+		// 	let text = " " + tweet.text + " ";
+		// 	this.state.search.forEach((word) => {
+		// 		if (text.includes(" " + word + " ")) {
+		// 			count += 1;
+		// 			console.log("find 1 match");
+		// 		}
+		// 	});
+		// 	if (count >= 1) {
+		// 		filteredTweets.push(tweet);
+		// 	}
+		// });
+
+		// this.state.markers = filteredTweets;
 	}
 
 	componentWillMount() {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -28,13 +28,9 @@ import EqualizerIcon from "@material-ui/icons/Equalizer";
 import ToggleButtons from "./Toggle";
 import "../CSS/Drawer.css";
 import { Map } from "./Map";
-import { Marker } from "react-leaflet";
 import Modal from "@material-ui/core/Modal";
 import BasicTable from "./Table";
 import Button from "@material-ui/core/Button";
-import Bars from "./Bars";
-import L from "leaflet";
-import "leaflet.markercluster";
 
 const drawerWidth = "50vmin";
 
@@ -117,7 +113,8 @@ export default function PersistentDrawerLeft() {
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const [modalStyle] = React.useState(getModalStyle);
+	const [modalStyle] = useState(getModalStyle);
+	const [keyWords, setKeywords] = useState();
 
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
 
@@ -190,8 +187,11 @@ export default function PersistentDrawerLeft() {
 	);
 
 	const checkSearch = (event) => {
-		var words = event.target.value;
-		words = words.split(" ");
+		// if (keyWords.length() == 0) {
+		// 	setKeywords(null);
+		// }
+		let words = keyWords.split(" ");
+		console.log("key,words:", keyWords, words);
 		setSearch(words);
 		console.log("checksearch:", search);
 		// for(let tweet of state.allTweets){
@@ -324,14 +324,24 @@ export default function PersistentDrawerLeft() {
 							justify="center"
 							alignItems="flex-start"
 						>
-							<TextField
-								id="standard-basic"
-								label="KeyWords"
-								onChange={checkSearch}
-							/>
-							<Button variant="contained" color="primary">
-								Search
-							</Button>
+							<Grid item direction="row">
+								<TextField
+									id="standard-basic"
+									label="KeyWords"
+									onChange={(e) => {
+										setKeywords(e.target.value);
+									}}
+								/>
+								<Button
+									variant="contained"
+									color="primary"
+									onClick={(e) => {
+										checkSearch(e);
+									}}
+								>
+									Search
+								</Button>
+							</Grid>
 							<FormGroup className="switch">
 								<FormControlLabel
 									control={
