@@ -27,11 +27,11 @@ import Grid from "@material-ui/core/Grid";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import ToggleButtons from "./Toggle";
 import "../CSS/Drawer.css";
-import { Map } from "./Map";
+// import { Map } from "./Map";
 import Modal from "@material-ui/core/Modal";
 import BasicTable from "./Table";
 import Button from "@material-ui/core/Button";
-
+import TestMap from "./TestMap";
 const drawerWidth = "50vmin";
 
 const useStyles = makeStyles((theme) => ({
@@ -399,7 +399,8 @@ export default function PersistentDrawerLeft() {
 				})}
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
-				<Map search={search} />
+				{/* <Map search={search} /> */}
+				<TestMap />
 			</main>
 
 			<Modal
