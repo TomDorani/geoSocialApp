@@ -6,12 +6,13 @@ import { renderToString } from "react-dom/server";
 const TestMap = () => {
 	const markers = [
 		{
-			id: "randomStringOrNumber",
+			id: "1",
 			iconColor: "red",
-			position: [-37.814, 144.96332],
+			position: [-36.814, 145.96332],
 			popup: renderToString(<div>All good!</div>),
-			onClick: () => alert("marker clicked"),
+			// onClick: () => alert("marker clicked"),
 			tooltip: "Hey!",
+			country: "israel",
 		},
 		{
 			id: "2",
@@ -19,7 +20,7 @@ const TestMap = () => {
 			position: [-37.814, 144.96332],
 			popup: "Quack!",
 			popupOpen: true, // if popup has to be open by default
-			onClick: () => alert("marker clicked"),
+			// onClick: () => alert("marker clicked"),
 			tooltip: "Nice!",
 		},
 	];
