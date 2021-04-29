@@ -76,7 +76,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		// padding: theme.spacing(3),
 		transition: theme.transitions.create("margin", {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -106,8 +105,8 @@ export default function PersistentDrawerLeft() {
 	const [state, setState] = useState({
 		checkedA: false,
 		checkedB: false,
-		// allTweets : [],
-		// relevantTweets : [],
+		keyWords:'',
+
 	});
 	const [search, setSearch] = useState([]);
 	const theme = useTheme();
@@ -177,7 +176,7 @@ export default function PersistentDrawerLeft() {
 				<Button
 					variant="outlined"
 					size="medium"
-					color="black"
+					color="inherit"
 					style={{ marginLeft: "90%" }}
 				>
 					Submit
@@ -187,32 +186,16 @@ export default function PersistentDrawerLeft() {
 	);
 
 	const checkSearch = (event) => {
-		// if (keyWords.length() == 0) {
-		// 	setKeywords(null);
-		// }
-		let words = keyWords.split(" ");
-		console.log("key,words:", keyWords, words);
+
+		if(state.search == '' || state.search == null){
+			setSearch([]);
+		}
+		else{
+		let words = state.search.split(" ");
+		console.log("key,words:", words);
 		setSearch(words);
-		console.log("checksearch:", search);
-		// for(let tweet of state.allTweets){
-		//   count = 0;
-		//   for(let word of words){
-		//     tweet.text = " " + tweet.text + " ";
-		//     var flag = tweet.text.includes(" " +word+ " ");
-		//     if(flag == true){
-		//       count +=1;
-		//       break;
-		//     }
+		}
 
-		//   }
-		// console.log(count);
-		// console.log(words.length / 2);
-		// if(count >= words.length/2){
-		//   state.relevantTweets.push(tweet);
-		//   }
-
-		// }
-		// console.log(state);
 	};
 
 	const handleDrawerOpen = () => {
@@ -222,32 +205,14 @@ export default function PersistentDrawerLeft() {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
-
 	const handleChange = (event) => {
-		state.relevantTweets = [];
+		console.log(event);
+	}
 
-		// state.allTweets = [
-		// 	{
-		// 		Height: 0,
-		// 		Width: 0,
-		// 		text: "fa fa bi fa ti na mi",
-		// 		coordinates: [-79.9372, 32.7872],
-		// 	},
-		// 	{
-		// 		Height: 0,
-		// 		Width: 0,
-		// 		text: "fa fa bi fa ti na mi",
-		// 		coordinates: [-78.9372, 33.7872],
-		// 	},
-		// ];
-		// console.log("here");
-		// var cluster = L.markerClusterGroup();
-		setState({ ...state, [event.target.name]: event.target.checked });
-		// for (let tweet of state.allTweets) {
-		// 	cluster.addLayer(L.marker(tweet.coordinates));
-		// }
+	const searchChange = (event) => {
 
-		// state.cluster = cluster;
+		state.search = event.target.value;
+
 	};
 
 	const m = [
@@ -329,10 +294,11 @@ export default function PersistentDrawerLeft() {
 									id="standard-basic"
 									label="KeyWords"
 									onChange={(e) => {
-										setKeywords(e.target.value);
+										searchChange(e);
 									}}
 								/>
 								<Button
+									className = "searchbtn"
 									variant="contained"
 									color="primary"
 									onClick={(e) => {
@@ -400,15 +366,14 @@ export default function PersistentDrawerLeft() {
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
 				{/* <Map search={search} /> */}
-				<TestMap />
+				<TestMap search ={search} />
 			</main>
 
 			<Modal
 				id="modal"
 				open={modalIsOpen}
 				onClose={handleModalClose}
-				// aria-labelledby="simple-modal-title"
-				// aria-describedby="simple-modal-description"
+			
 			>
 				{body}
 			</Modal>
@@ -417,8 +382,7 @@ export default function PersistentDrawerLeft() {
 				id="contactUsModal"
 				open={contactUsIsOpen}
 				onClose={contactUsClose}
-				// aria-labelledby="simple-modal-title"
-				// aria-describedby="simple-modal-description"
+	
 			>
 				{contactUsBody}
 			</Modal>
