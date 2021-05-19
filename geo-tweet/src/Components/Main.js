@@ -32,7 +32,14 @@ import Modal from "@material-ui/core/Modal";
 import BasicTable from "./Table";
 import Button from "@material-ui/core/Button";
 import TestMap from "./TestMap";
-const drawerWidth = "50vmin";
+import Country from "../Statistics/Country"
+import Topics from "../Statistics/Topics"
+import Sent from "../Statistics/Sentimental"
+import Accordion from "./Accordion"
+
+
+import { Dialog } from "@material-ui/core";
+const drawerWidth = "80vmin";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -91,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getModalStyle() {
-	const top = 50;
-	const left = 50;
+	const top = 20;
+	const left = 20;
 
 	return {
 		top: `${top}%`,
@@ -103,11 +110,11 @@ function getModalStyle() {
 
 export default function PersistentDrawerLeft() {
 	const [state, setState] = useState({
-		checkedA: false,
-		checkedB: false,
+		heatMap: false,
 		keyWords:'',
 
 	});
+
 	const [search, setSearch] = useState([]);
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
@@ -116,6 +123,8 @@ export default function PersistentDrawerLeft() {
 	const [keyWords, setKeywords] = useState();
 
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
+	const [topicIsOpen, setTopicIsOpen] = useState(false);
+
 
 	const handleModalOpen = () => {
 		setModalIsOpen(true);
@@ -136,6 +145,19 @@ export default function PersistentDrawerLeft() {
 		setContactUsIsOpen(false);
 	};
 
+	const topicOpen = () => {
+		console.log("Contact Us");
+		setTopicIsOpen(true);
+	};
+
+	const topicClose = () => {
+		console.log("Contact Us");
+		setTopicIsOpen(false);
+	};
+
+
+
+
 	const useStyles = makeStyles((theme) => ({
 		paper: {
 			position: "absolute",
@@ -149,10 +171,33 @@ export default function PersistentDrawerLeft() {
 
 	const classes = useStyles();
 
-	const body = (
+	const countryBody = (
 		<div style={modalStyle} className={classes.paper}>
-			<h2 id="simple-modal-title">Statistics</h2>
-			<BasicTable />
+			<h2 id="simple-modal-title">Segmentation by countries</h2>
+			<Button
+					variant="outlined"
+					size="medium"
+					color="primary"
+					style={{ marginLeft: "42%" }}
+				>
+					Sentimental View
+				</Button>
+			<Country/>
+			
+		</div>
+	);
+	const topicBody = (
+		<div style={modalStyle} className={classes.paper}>
+			<h2 id="simple-modal-title">Segmentation by topics</h2>
+			<Button
+					variant="outlined"
+					size="medium"
+					color="primary"
+					style={{ marginLeft: "42%" }}
+				>
+					Sentimental View
+				</Button>
+			<Sent/>
 		</div>
 	);
 
@@ -206,7 +251,7 @@ export default function PersistentDrawerLeft() {
 		setOpen(false);
 	};
 	const handleChange = (event) => {
-		console.log(event);
+		setState({ ...state, [event.target.name]: event.target.checked });
 	}
 
 	const searchChange = (event) => {
@@ -265,7 +310,7 @@ export default function PersistentDrawerLeft() {
 					<Typography
 						variant="h6"
 						noWrap
-						style={{ padding: "25px", marginInlineEnd: "45%" }}
+						style={{ padding: "20px", marginInlineEnd: "35%" }}
 					>
 						Geo Tweet
 					</Typography>
@@ -309,23 +354,15 @@ export default function PersistentDrawerLeft() {
 								</Button>
 							</Grid>
 							<FormGroup className="switch">
+	
 								<FormControlLabel
+
+									className = "heatMapSwitch"
 									control={
 										<Switch
-											checked={state.checkedA}
+											checked={state.heatMap}
 											onChange={handleChange}
-											name="checkedA"
-											color="primary"
-										/>
-									}
-									label="Cluster Layer"
-								/>
-								<FormControlLabel
-									control={
-										<Switch
-											checked={state.checkedB}
-											onChange={handleChange}
-											name="checkedB"
+											name="heatMap"
 											color="primary"
 										/>
 									}
@@ -334,23 +371,30 @@ export default function PersistentDrawerLeft() {
 							</FormGroup>
 						</Grid>
 
-						<FormControl component="fieldset">
+						{/* <FormControl component="fieldset">
 							<FormLabel component="legend">View</FormLabel>
 							<br></br>
 							<div className="gap">
 								<ToggleButtons></ToggleButtons>
 							</div>
-						</FormControl>
+						</FormControl> */}
 					</Container>
 				</List>
 				<Divider />
 				<List>
-					<ListItem button key={"Show Statistics"} onClick={handleModalOpen}>
+					<Accordion></Accordion>
+					{/* <ListItem button key={"Country Statistics"} onClick={handleModalOpen}>
 						<ListItemIcon>
 							<EqualizerIcon />
 						</ListItemIcon>
-						<ListItemText primary={"Show Statistics"} />
+						<ListItemText primary={"Country Statistics"} />
 					</ListItem>
+					<ListItem button key={"Topic Statistics"} onClick={topicOpen}>
+						<ListItemIcon>
+							<EqualizerIcon />
+						</ListItemIcon>
+						<ListItemText primary={"Topic Statistics"} />
+					</ListItem> */}
 					<ListItem button key={"Contact Us"} onClick={contactUsOpen}>
 						<ListItemIcon>
 							<MailIcon />
@@ -366,16 +410,25 @@ export default function PersistentDrawerLeft() {
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
 				{/* <Map search={search} /> */}
-				<TestMap search ={search} />
+				<TestMap search ={search} heatMap = {state.heatMap}/>
 			</main>
 
 			<Modal
 				id="modal"
 				open={modalIsOpen}
 				onClose={handleModalClose}
+				className = "CountryModal"
 			
 			>
-				{body}
+				{countryBody}
+			</Modal>
+			<Modal
+				id="TopicModal"
+				open={topicIsOpen}
+				onClose={topicClose}
+			
+			>
+				{topicBody}
 			</Modal>
 
 			<Modal

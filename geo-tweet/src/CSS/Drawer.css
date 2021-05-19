@@ -40,21 +40,71 @@
 	display: inline-flex;
 	max-height: 64px;
     align-items: center;
+	/* width:min-content; */
 
 }
 
 .DrawerButton {
 	color: #fff;
+	padding-left: 23%;
 }
 
-.switch {
-	padding: 20px;
+/* .switch {
+	padding: 12px;
 	
-}
+} */
 
 
 .MoodIcon{
 	padding-left: 10px;
 	font-size: xx-large;
+}
+
+.CountryModal{
+margin-left: 10%;
+}
+
+/* .chart {
+	max-height : 5;
+	justify-content: center;
+	padding-left: 10%;
+
+} */
+
+#simple-modal-title{
+	text-align: center;
+}
+
+#TopicModal{
+
+	margin-left: 10%;
+
+}
+
+#contactUsModal{
+
+	margin-left: 10%;
+
+}
+
+.graph{
+	margin-right: 80%;
+}
+
+.sentLegend{
+	margin-left: 5%;
+}
+
+.sentIcon{
+	margin-left: 2%;
+}
+
+.sntBtn{
+	padding-left: 91%;
+}
+
+.heatMapSwitch{
+
+	padding-top: 20%;
 }
 

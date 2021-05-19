@@ -3,8 +3,16 @@ import PixiOverlay from "react-leaflet-pixi-overlay";
 import { Map, TileLayer } from "react-leaflet";
 import { renderToString } from "react-dom/server";
 import Markers from "./Markers";
+import HeatmapLayer from 'react-leaflet-heatmap-layer';
+
+
+
 
 const TestMap = (state) => {
+
+
+
+	const [zoom, setZoom] = useState(3);
 
 	const [tweets, setTweets] = useState([]);
 
@@ -25,10 +33,15 @@ const TestMap = (state) => {
 					
 				};
 				bringTweets();
+				console.log(tweets);
+				console.log(tweets[0]);
+
+
 			},[]
 		)
 
 	
+	console.log("zoom " , zoom);
 
 	const markers = [
 			{
@@ -64,7 +77,7 @@ const TestMap = (state) => {
 		>
 			<Map
 				style={{
-					height: h * 0.8,
+					height: h * 0.9,
 					width: w * 0.99,
 					paddingTop: "10%",
 					position: "initial",
@@ -73,17 +86,21 @@ const TestMap = (state) => {
 				preferCanvas={true}
 				zoom={3}
 				zoomOffset={4}
-				maxZoom={11}
+				maxZoom={17}
 				minZoom={3}
 				center={[-37.814, 144.96332]}
+				onZoomEnd = {(e) => {setZoom(e.target._zoom)} }
 				// Other map props...
+
+
 			>
+
 				<TileLayer
 					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> '
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				{/* <PixiOverlay markers={markers} /> */}
-				<Markers markersArr = {tweets} search = {state.search}></Markers>
+				
+				<Markers markersArr = {tweets} search = {state.search} zoom = {zoom} heatMap = {state.heatMap}></Markers>
 			</Map>
 		</div>
 	);
