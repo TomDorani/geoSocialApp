@@ -19,7 +19,7 @@ const TestMap = (state) => {
 	useEffect(() =>{
 	
 	const bringTweets = async () => {
-					const res = await fetch(`http://127.0.0.1:5000/`, {
+					const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/`, {
 						headers: {
 							"Content-Type": "application/json",
 							Accept: "application/json",
@@ -27,9 +27,8 @@ const TestMap = (state) => {
 					});
 					const data = await res.json();
 					console.log("data:", data);
-					let dtrim = data.slice(0, 10000);
 				
-					setTweets(dtrim);
+					setTweets(data);
 					
 				};
 				bringTweets();

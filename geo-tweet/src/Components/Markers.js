@@ -69,9 +69,10 @@ const EventsCreator = (state) => {
 	const filteredTweets = filterTweets(state.markersArr , state.search);
 	const markers = filteredTweets.map((item) => {
 		
-		if (item.coordinates) {
+		if (item.coordinate) {
 
-			const position = [item.coordinates[1], item.coordinates[0]];
+			let cord = JSON.parse(item.coordinate);
+			const position = [cord[0], cord[1]];
 			const text = `"` + item.text + `"`;
 			const authur = item.author + " says:";
 
@@ -96,13 +97,13 @@ const EventsCreator = (state) => {
 		return(
 			
 			<HeatmapLayer
-			max = {3}
+			// max = {4}
             // fitBoundsOnLoad
             // fitBoundsOnUpdate
             points={filteredTweets}
-            longitudeExtractor={m => m.coordinates[0]}
-            latitudeExtractor={m => m.coordinates[1]}
-            intensityExtractor={m => parseFloat(5)} />
+            longitudeExtractor={m => JSON.parse(m.coordinate)[1]}
+            latitudeExtractor={m => JSON.parse(m.coordinate)[0]}
+            intensityExtractor={m => parseFloat(8)} />
 
 		)
 	}
