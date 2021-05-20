@@ -48,36 +48,6 @@ class Country extends React.Component {
   
     render() {
 
-      
-      // const getCountries = async () => {
-      //   const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/api/country?search=${this.props.search}`, {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       Accept: "application/json",
-      //     },
-      //   });
-      //   const data = await res.json();
-      //   console.log("data:", data);
-      //   filteredTweets = data
-      
-
-      // };
-      // getCountries();
-
-      // console.log("filteredTweets" + filteredTweets)
-      // let countries = []
-      // let sizes = []
-      // filteredTweets.forEach(country => {
-      //   console.log("country[0]" + country[0])
-      //   countries.push(country[0]);
-      //   sizes.push(country[1]);
-      // });
-
-      // console.log("country:", countries);
-      // console.log("sizes:", sizes);
-
-      // console.log("state", this.state.countries[0][0]);
-
       const clicked = (e) => {
           console.log("hey click",e);
           console.log("bar" , e.nativeEvent.originalTarget.attributes[2].nodeValue);
@@ -142,7 +112,7 @@ class Country extends React.Component {
               <ChevronLeftIcon  />						
           </IconButton>
           </div>
-          <Sent className = "sentGraph" search ={this.props.search} country = {this.state.bar} ></Sent>
+          <Sent className = "sentGraph" search ={this.props.search} country = {this.state.bar} flag = "country"></Sent>
           </div>
         )
       }

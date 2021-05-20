@@ -8,33 +8,44 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 
+const countries = []
 
 
-const Topics = ["Politics" , "News" , "Sports" , "Entertainment" , "Israel"];
-const sizes = [30000 , 10000 , 5000 , 30000, 25000]
+class Topics extends React.Component {
 
-
-
-
-class Country extends React.Component {
     constructor() {
       super();
+
+
       this.state = {
         clicked: false,
+        countries : [],
         bar : '',
         style: {
           data: { fill: "tomato" }
         }
       };
     }
+
+
+
+    componentDidMount() {
+      fetch(`https://ancient-retreat-48472.herokuapp.com/api/topic?search=${this.props.search}`)
+      .then((response) => response.json())
+      .then(res => {
+          this.setState({ countries: res });
+          console.log("res in topic",res);
+      });
+  }
+
+    
   
     render() {
 
       const clicked = (e) => {
-          console.log("hey click",e);
-          console.log("bar" , e.nativeEvent.originalTarget.attributes[2].nodeValue);
+
           this.state.clicked = true;
-          this.state.bar = Topics[e.nativeEvent.originalTarget.attributes[2].nodeValue];
+          this.state.bar =  this.state.countries[e.nativeEvent.originalTarget.attributes[2].nodeValue][0];
           this.forceUpdate()
       };
 
@@ -46,7 +57,7 @@ class Country extends React.Component {
       };
   
 
-      if(this.state.clicked == false){
+      if(this.state.clicked == false && this.state.countries[0]){
       return (
         <div className= "chart">
    <VictoryChart domainPadding={30} padding={{ left: 80, right: 100 , bottom :50 , top : 20}} height = {385} width={550}>
@@ -61,14 +72,14 @@ class Country extends React.Component {
         }
       }}
     categories={{
-      x: Topics
+      x: countries
     }}
     data={[
-      {x: Topics[0], y: sizes[0]},
-      {x: Topics[1], y: sizes[1]},
-      {x: Topics[2], y: sizes[2]},
-      {x: Topics[3], y: sizes[3]},
-      {x: Topics[4], y: sizes[4]}
+      {x: this.state.countries[0][0], y: this.state.countries[0][1]},
+      {x: this.state.countries[1][0], y: this.state.countries[1][1]},
+      {x: this.state.countries[2][0], y: this.state.countries[2][1]},
+      {x: this.state.countries[3][0], y: this.state.countries[3][1]},
+      {x: this.state.countries[4][0], y: this.state.countries[4][1]}
 
     ]}
     events={[
@@ -93,7 +104,7 @@ class Country extends React.Component {
               <ChevronLeftIcon  />						
           </IconButton>
           </div>
-          <Sent className = "sentGraph" country = {this.state.bar} ></Sent>
+          <Sent className = "sentGraph" search ={this.props.search} country = {this.state.bar} flag = "topic" ></Sent>
           </div>
         )
       }
@@ -101,5 +112,5 @@ class Country extends React.Component {
     }
    }
   
-    export default Country;
+    export default Topics;
   

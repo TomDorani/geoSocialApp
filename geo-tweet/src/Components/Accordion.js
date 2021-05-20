@@ -74,7 +74,7 @@ export default function ControlledAccordions(state) {
           </Typography> */}
         </AccordionSummary>
         <AccordionDetails>
-            <Topics></Topics>
+            <Topics search = {state.search}></Topics>
         </AccordionDetails>
       </Accordion>
     </div>

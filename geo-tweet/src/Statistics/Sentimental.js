@@ -14,10 +14,10 @@ class Sent extends React.Component {
 
   componentDidMount() {
     console.log("mount")
-    fetch(`https://ancient-retreat-48472.herokuapp.com/api/country/senti?search=${this.props.search}&country=${this.props.country}`)
+    fetch(`https://ancient-retreat-48472.herokuapp.com/api/${this.props.flag}/senti?search=${this.props.search}&${this.props.flag}=${this.props.country}`)
     .then((response) => response.json())
     .then(res => {
-      console.log("res",res)
+      console.log("res in sent",res)
         this.setState({ sent: res });
     });
 }
@@ -106,7 +106,7 @@ class Sent extends React.Component {
           <svg className = "sentIcon" xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 24 24" fill = "#ffff66"><circle cx="12" cy="12" r="12"/></svg>
         <svg viewBox="0 0 500 200">
           <VictoryPie
-            colorScale={["#53c653", "#d6d6c2", "#e0544a", "#ffff66" ]}
+            colorScale={["#53c653", "#e0544a", "#d6d6c2", "#ffff66" ]}
             standalone={false}
             width={400} height={200}
             data={[
