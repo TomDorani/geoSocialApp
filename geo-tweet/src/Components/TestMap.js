@@ -14,7 +14,7 @@ const TestMap = (state) => {
 		const bringTweets = async () => {
 			console.log("try to fetch");
 			let tt = [];
-			for (let i = 0; i < 10; i++) {
+			for (let i = 0; i < 5; i++) {
 				console.log("fetch page:", i);
 				const res = await fetch(
 					`https://ancient-retreat-48472.herokuapp.com/?page=${i}`,
