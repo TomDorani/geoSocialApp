@@ -382,7 +382,7 @@ export default function PersistentDrawerLeft() {
 				</List>
 				<Divider />
 				<List>
-					<Accordion></Accordion>
+					<Accordion search ={search}></Accordion>
 					{/* <ListItem button key={"Country Statistics"} onClick={handleModalOpen}>
 						<ListItemIcon>
 							<EqualizerIcon />
