@@ -3,67 +3,42 @@ import PixiOverlay from "react-leaflet-pixi-overlay";
 import { Map, TileLayer } from "react-leaflet";
 import { renderToString } from "react-dom/server";
 import Markers from "./Markers";
-import HeatmapLayer from 'react-leaflet-heatmap-layer';
-
-
-
+import HeatmapLayer from "react-leaflet-heatmap-layer";
 
 const TestMap = (state) => {
-
-
-
 	const [zoom, setZoom] = useState(3);
 
 	const [tweets, setTweets] = useState([]);
 
-	useEffect(() =>{
-	
-	const bringTweets = async () => {
-					const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/`, {
+	useEffect(() => {
+		const bringTweets = async () => {
+			console.log("try to fetch");
+			let tt = [];
+			for (let i = 0; i < 10; i++) {
+				console.log("fetch page:", i);
+				const res = await fetch(
+					`https://ancient-retreat-48472.herokuapp.com/?page=${i}`,
+					{
 						headers: {
 							"Content-Type": "application/json",
 							Accept: "application/json",
 						},
-					});
-					const data = await res.json();
-					console.log("data:", data);
-				
-					setTweets(data);
-					
-				};
-				bringTweets();
-				console.log(tweets);
-				console.log(tweets[0]);
+					}
+				);
+				const data = await res.json();
+				console.log("data:", data);
+				tt = tt.concat(data);
+			}
 
+			setTweets(tt);
+		};
+		bringTweets();
+		if (tweets) console.log(tweets);
+		console.log(tweets[0]);
+	}, []);
 
-			},[]
-		)
+	console.log("zoom ", zoom);
 
-	
-	console.log("zoom " , zoom);
-
-	const markers = [
-			{
-				id: "1",
-				iconColor: "red",
-				position: [-36.814, 145.96332],
-				popup: renderToString(<div>All good!</div>),
-				// onClick: () => alert("marker clicked"),
-				tooltip: "Hey!",
-				country: "israel",
-			},
-			{
-				id: "2",
-				iconColor: "blue",
-				position: [-37.814, 144.96332],
-				popup: "Quack!",
-				popupOpen: true, // if popup has to be open by default
-				// onClick: () => alert("marker clicked"),
-				tooltip: "Nice!",
-			},
-
-			
-	];
 	const h = window.innerHeight;
 	const w = window.innerWidth;
 	return (
@@ -88,18 +63,22 @@ const TestMap = (state) => {
 				maxZoom={17}
 				minZoom={3}
 				center={[-37.814, 144.96332]}
-				onZoomEnd = {(e) => {setZoom(e.target._zoom)} }
+				onZoomEnd={(e) => {
+					setZoom(e.target._zoom);
+				}}
 				// Other map props...
-
-
 			>
-
 				<TileLayer
 					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> '
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				
-				<Markers markersArr = {tweets} search = {state.search} zoom = {zoom} heatMap = {state.heatMap}></Markers>
+
+				<Markers
+					markersArr={tweets}
+					search={state.search}
+					zoom={zoom}
+					heatMap={state.heatMap}
+				></Markers>
 			</Map>
 		</div>
 	);

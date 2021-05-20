@@ -32,11 +32,10 @@ import Modal from "@material-ui/core/Modal";
 import BasicTable from "./Table";
 import Button from "@material-ui/core/Button";
 import TestMap from "./TestMap";
-import Country from "../Statistics/Country"
-import Topics from "../Statistics/Topics"
-import Sent from "../Statistics/Sentimental"
-import Accordion from "./Accordion"
-
+import Country from "../Statistics/Country";
+import Topics from "../Statistics/Topics";
+import Sent from "../Statistics/Sentimental";
+import Accordion from "./Accordion";
 
 import { Dialog } from "@material-ui/core";
 const drawerWidth = "80vmin";
@@ -111,8 +110,7 @@ function getModalStyle() {
 export default function PersistentDrawerLeft() {
 	const [state, setState] = useState({
 		heatMap: false,
-		keyWords:'',
-
+		keyWords: "",
 	});
 
 	const [search, setSearch] = useState([]);
@@ -124,7 +122,6 @@ export default function PersistentDrawerLeft() {
 
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
 	const [topicIsOpen, setTopicIsOpen] = useState(false);
-
 
 	const handleModalOpen = () => {
 		setModalIsOpen(true);
@@ -155,9 +152,6 @@ export default function PersistentDrawerLeft() {
 		setTopicIsOpen(false);
 	};
 
-
-
-
 	const useStyles = makeStyles((theme) => ({
 		paper: {
 			position: "absolute",
@@ -175,29 +169,28 @@ export default function PersistentDrawerLeft() {
 		<div style={modalStyle} className={classes.paper}>
 			<h2 id="simple-modal-title">Segmentation by countries</h2>
 			<Button
-					variant="outlined"
-					size="medium"
-					color="primary"
-					style={{ marginLeft: "42%" }}
-				>
-					Sentimental View
-				</Button>
-			<Country/>
-			
+				variant="outlined"
+				size="medium"
+				color="primary"
+				style={{ marginLeft: "42%" }}
+			>
+				Sentimental View
+			</Button>
+			<Country />
 		</div>
 	);
 	const topicBody = (
 		<div style={modalStyle} className={classes.paper}>
 			<h2 id="simple-modal-title">Segmentation by topics</h2>
 			<Button
-					variant="outlined"
-					size="medium"
-					color="primary"
-					style={{ marginLeft: "42%" }}
-				>
-					Sentimental View
-				</Button>
-			<Sent/>
+				variant="outlined"
+				size="medium"
+				color="primary"
+				style={{ marginLeft: "42%" }}
+			>
+				Sentimental View
+			</Button>
+			<Sent />
 		</div>
 	);
 
@@ -231,16 +224,13 @@ export default function PersistentDrawerLeft() {
 	);
 
 	const checkSearch = (event) => {
-
-		if(state.search == '' || state.search == null){
+		if (state.search == "" || state.search == null) {
 			setSearch([]);
+		} else {
+			let words = state.search.split(" ");
+			console.log("key,words:", words);
+			setSearch(words);
 		}
-		else{
-		let words = state.search.split(" ");
-		console.log("key,words:", words);
-		setSearch(words);
-		}
-
 	};
 
 	const handleDrawerOpen = () => {
@@ -252,12 +242,10 @@ export default function PersistentDrawerLeft() {
 	};
 	const handleChange = (event) => {
 		setState({ ...state, [event.target.name]: event.target.checked });
-	}
+	};
 
 	const searchChange = (event) => {
-
 		state.search = event.target.value;
-
 	};
 
 	const m = [
@@ -334,7 +322,7 @@ export default function PersistentDrawerLeft() {
 							justify="center"
 							alignItems="flex-start"
 						>
-							<Grid item direction="row">
+							<Grid item>
 								<TextField
 									id="standard-basic"
 									label="KeyWords"
@@ -343,7 +331,7 @@ export default function PersistentDrawerLeft() {
 									}}
 								/>
 								<Button
-									className = "searchbtn"
+									className="searchbtn"
 									variant="contained"
 									color="primary"
 									onClick={(e) => {
@@ -354,10 +342,8 @@ export default function PersistentDrawerLeft() {
 								</Button>
 							</Grid>
 							<FormGroup className="switch">
-	
 								<FormControlLabel
-
-									className = "heatMapSwitch"
+									className="heatMapSwitch"
 									control={
 										<Switch
 											checked={state.heatMap}
@@ -410,24 +396,18 @@ export default function PersistentDrawerLeft() {
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
 				{/* <Map search={search} /> */}
-				<TestMap search ={search} heatMap = {state.heatMap}/>
+				<TestMap search={search} heatMap={state.heatMap} />
 			</main>
 
 			<Modal
 				id="modal"
 				open={modalIsOpen}
 				onClose={handleModalClose}
-				className = "CountryModal"
-			
+				className="CountryModal"
 			>
 				{countryBody}
 			</Modal>
-			<Modal
-				id="TopicModal"
-				open={topicIsOpen}
-				onClose={topicClose}
-			
-			>
+			<Modal id="TopicModal" open={topicIsOpen} onClose={topicClose}>
 				{topicBody}
 			</Modal>
 
@@ -435,7 +415,6 @@ export default function PersistentDrawerLeft() {
 				id="contactUsModal"
 				open={contactUsIsOpen}
 				onClose={contactUsClose}
-	
 			>
 				{contactUsBody}
 			</Modal>
