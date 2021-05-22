@@ -25,6 +25,7 @@
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-leaflet-pixi-overlay": "^1.0.10",
     "react-scripts": "4.0.1",
+    "react-spinners": "^0.10.6",
     "victory": "^35.6.2",
     "web-vitals": "^0.2.4"
   },
