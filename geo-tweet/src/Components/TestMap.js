@@ -26,12 +26,7 @@ const TestMap = (state) => {
 
 	useEffect(() => {
 		const bringTweets = async () => {
-			const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/`, {
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-			});
+			const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/`);
 			const data = await res.json();
 			console.log("data:", data);
 
