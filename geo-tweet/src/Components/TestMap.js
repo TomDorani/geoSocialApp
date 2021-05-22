@@ -42,7 +42,7 @@ const TestMap = (state) => {
 
 		console.log(tweets);
 		console.log(tweets[0]);
-	}, []);
+	}, [tweets]);
 
 	console.log("zoom ", zoom);
 
