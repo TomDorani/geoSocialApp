@@ -20,82 +20,74 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import EqualizerIcon from "@material-ui/icons/Equalizer";
-import ToggleButtons from "./Toggle";
 import "../CSS/Drawer.css";
-// import { Map } from "./Map";
 import Modal from "@material-ui/core/Modal";
-import BasicTable from "./Table";
 import Button from "@material-ui/core/Button";
 import TestMap from "./TestMap";
-import Country from "../Statistics/Country"
-import Topics from "../Statistics/Topics"
-import Sent from "../Statistics/Sentimental"
-import Accordion from "./Accordion"
+import Country from "../Statistics/Country";
+import Sent from "../Statistics/Sentimental";
+import Accordion from "./Accordion";
 
+// import { Dialog } from "@material-ui/core";
+// const drawerWidth = "80vmin";
 
-import { Dialog } from "@material-ui/core";
-const drawerWidth = "80vmin";
+// const useStyles = makeStyles((theme) => ({
+// 	root: {
+// 		display: "flex",
+// 	},
+// 	appBar: {
+// 		transition: theme.transitions.create(["margin", "width"], {
+// 			easing: theme.transitions.easing.sharp,
+// 			duration: theme.transitions.duration.leavingScreen,
+// 		}),
+// 	},
+// 	appBarShift: {
+// 		width: `calc(100% - ${drawerWidth}px)`,
+// 		marginLeft: drawerWidth,
+// 		transition: theme.transitions.create(["margin", "width"], {
+// 			easing: theme.transitions.easing.easeOut,
+// 			duration: theme.transitions.duration.enteringScreen,
+// 		}),
+// 	},
+// 	menuButton: {
+// 		marginRight: theme.spacing(2),
+// 	},
+// 	hide: {
+// 		display: "none",
+// 	},
+// 	drawer: {
+// 		width: drawerWidth,
+// 		flexShrink: 0,
+// 	},
+// 	drawerPaper: {
+// 		width: drawerWidth,
+// 	},
+// 	drawerHeader: {
+// 		display: "flex",
+// 		alignItems: "center",
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		display: "flex",
-	},
-	appBar: {
-		transition: theme.transitions.create(["margin", "width"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-	},
-	appBarShift: {
-		width: `calc(100% - ${drawerWidth}px)`,
-		marginLeft: drawerWidth,
-		transition: theme.transitions.create(["margin", "width"], {
-			easing: theme.transitions.easing.easeOut,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-	},
-	hide: {
-		display: "none",
-	},
-	drawer: {
-		width: drawerWidth,
-		flexShrink: 0,
-	},
-	drawerPaper: {
-		width: drawerWidth,
-	},
-	drawerHeader: {
-		display: "flex",
-		alignItems: "center",
-
-		padding: theme.spacing(0, 1),
-		// necessary for content to be below app bar
-		...theme.mixins.toolbar,
-		justifyContent: "flex-end",
-	},
-	content: {
-		flexGrow: 1,
-		transition: theme.transitions.create("margin", {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-	},
-	contentShift: {
-		transition: theme.transitions.create("margin", {
-			easing: theme.transitions.easing.easeOut,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-		marginLeft: 0,
-	},
-}));
+// 		padding: theme.spacing(0, 1),
+// 		// necessary for content to be below app bar
+// 		...theme.mixins.toolbar,
+// 		justifyContent: "flex-end",
+// 	},
+// 	content: {
+// 		flexGrow: 1,
+// 		transition: theme.transitions.create("margin", {
+// 			easing: theme.transitions.easing.sharp,
+// 			duration: theme.transitions.duration.leavingScreen,
+// 		}),
+// 	},
+// 	contentShift: {
+// 		transition: theme.transitions.create("margin", {
+// 			easing: theme.transitions.easing.easeOut,
+// 			duration: theme.transitions.duration.enteringScreen,
+// 		}),
+// 		marginLeft: 0,
+// 	},
+// }));
 
 function getModalStyle() {
 	const top = 20;
@@ -111,8 +103,7 @@ function getModalStyle() {
 export default function PersistentDrawerLeft() {
 	const [state, setState] = useState({
 		heatMap: false,
-		keyWords:'',
-
+		keyWords: "",
 	});
 
 	const [search, setSearch] = useState([]);
@@ -120,16 +111,15 @@ export default function PersistentDrawerLeft() {
 	const [open, setOpen] = useState(false);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalStyle] = useState(getModalStyle);
-	const [keyWords, setKeywords] = useState();
+	// const [keyWords, setKeywords] = useState();
 
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
 	const [topicIsOpen, setTopicIsOpen] = useState(false);
 
-
-	const handleModalOpen = () => {
-		setModalIsOpen(true);
-		console.log("open");
-	};
+	// const handleModalOpen = () => {
+	// 	setModalIsOpen(true);
+	// 	console.log("open");
+	// };
 
 	const handleModalClose = () => {
 		setModalIsOpen(false);
@@ -145,18 +135,15 @@ export default function PersistentDrawerLeft() {
 		setContactUsIsOpen(false);
 	};
 
-	const topicOpen = () => {
-		console.log("Contact Us");
-		setTopicIsOpen(true);
-	};
+	// const topicOpen = () => {
+	// 	console.log("Contact Us");
+	// 	setTopicIsOpen(true);
+	// };
 
 	const topicClose = () => {
 		console.log("Contact Us");
 		setTopicIsOpen(false);
 	};
-
-
-
 
 	const useStyles = makeStyles((theme) => ({
 		paper: {
@@ -175,29 +162,28 @@ export default function PersistentDrawerLeft() {
 		<div style={modalStyle} className={classes.paper}>
 			<h2 id="simple-modal-title">Segmentation by countries</h2>
 			<Button
-					variant="outlined"
-					size="medium"
-					color="primary"
-					style={{ marginLeft: "42%" }}
-				>
-					Sentimental View
-				</Button>
-			<Country/>
-			
+				variant="outlined"
+				size="medium"
+				color="primary"
+				style={{ marginLeft: "42%" }}
+			>
+				Sentimental View
+			</Button>
+			<Country />
 		</div>
 	);
 	const topicBody = (
 		<div style={modalStyle} className={classes.paper}>
 			<h2 id="simple-modal-title">Segmentation by topics</h2>
 			<Button
-					variant="outlined"
-					size="medium"
-					color="primary"
-					style={{ marginLeft: "42%" }}
-				>
-					Sentimental View
-				</Button>
-			<Sent/>
+				variant="outlined"
+				size="medium"
+				color="primary"
+				style={{ marginLeft: "42%" }}
+			>
+				Sentimental View
+			</Button>
+			<Sent />
 		</div>
 	);
 
@@ -231,16 +217,13 @@ export default function PersistentDrawerLeft() {
 	);
 
 	const checkSearch = (event) => {
-
-		if(state.search == '' || state.search == null){
+		if (state.search === "" || state.search == null) {
 			setSearch([]);
+		} else {
+			let words = state.search.split(" ");
+			console.log("key,words:", words);
+			setSearch(words);
 		}
-		else{
-		let words = state.search.split(" ");
-		console.log("key,words:", words);
-		setSearch(words);
-		}
-
 	};
 
 	const handleDrawerOpen = () => {
@@ -252,28 +235,26 @@ export default function PersistentDrawerLeft() {
 	};
 	const handleChange = (event) => {
 		setState({ ...state, [event.target.name]: event.target.checked });
-	}
-
-	const searchChange = (event) => {
-
-		state.search = event.target.value;
-
 	};
 
-	const m = [
-		{
-			lat: 51.505,
-			lng: -0.09,
-			zoom: 1,
-			zoomOffset: 1,
-		},
-		{
-			lat: 20.505,
-			lng: -0.09,
-			zoom: 1,
-			zoomOffset: 1,
-		},
-	];
+	const searchChange = (event) => {
+		state.search = event.target.value;
+	};
+
+	// const m = [
+	// 	{
+	// 		lat: 51.505,
+	// 		lng: -0.09,
+	// 		zoom: 1,
+	// 		zoomOffset: 1,
+	// 	},
+	// 	{
+	// 		lat: 20.505,
+	// 		lng: -0.09,
+	// 		zoom: 1,
+	// 		zoomOffset: 1,
+	// 	},
+	// ];
 
 	return (
 		<div className={classes.root}>
@@ -334,7 +315,7 @@ export default function PersistentDrawerLeft() {
 							justify="center"
 							alignItems="flex-start"
 						>
-							<Grid item direction="row">
+							<Grid>
 								<TextField
 									id="standard-basic"
 									label="KeyWords"
@@ -343,7 +324,7 @@ export default function PersistentDrawerLeft() {
 									}}
 								/>
 								<Button
-									className = "searchbtn"
+									className="searchbtn"
 									variant="contained"
 									color="primary"
 									onClick={(e) => {
@@ -354,10 +335,8 @@ export default function PersistentDrawerLeft() {
 								</Button>
 							</Grid>
 							<FormGroup className="switch">
-	
 								<FormControlLabel
-
-									className = "heatMapSwitch"
+									className="heatMapSwitch"
 									control={
 										<Switch
 											checked={state.heatMap}
@@ -382,7 +361,7 @@ export default function PersistentDrawerLeft() {
 				</List>
 				<Divider />
 				<List>
-					<Accordion search ={search}></Accordion>
+					<Accordion search={search}></Accordion>
 					{/* <ListItem button key={"Country Statistics"} onClick={handleModalOpen}>
 						<ListItemIcon>
 							<EqualizerIcon />
@@ -410,24 +389,18 @@ export default function PersistentDrawerLeft() {
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
 				{/* <Map search={search} /> */}
-				<TestMap search ={search} heatMap = {state.heatMap}/>
+				<TestMap search={search} heatMap={state.heatMap} />
 			</main>
 
 			<Modal
 				id="modal"
 				open={modalIsOpen}
 				onClose={handleModalClose}
-				className = "CountryModal"
-			
+				className="CountryModal"
 			>
 				{countryBody}
 			</Modal>
-			<Modal
-				id="TopicModal"
-				open={topicIsOpen}
-				onClose={topicClose}
-			
-			>
+			<Modal id="TopicModal" open={topicIsOpen} onClose={topicClose}>
 				{topicBody}
 			</Modal>
 
@@ -435,7 +408,6 @@ export default function PersistentDrawerLeft() {
 				id="contactUsModal"
 				open={contactUsIsOpen}
 				onClose={contactUsClose}
-	
 			>
 				{contactUsBody}
 			</Modal>

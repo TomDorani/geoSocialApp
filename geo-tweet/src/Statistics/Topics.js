@@ -34,20 +34,22 @@ class Topics extends React.Component {
 
 	render() {
 		const clicked = (e) => {
-			this.state.clicked = true;
-			this.state.bar =
-				this.state.countries[
+			this.setState({ clicked: true });
+			this.setState({
+				bar: this.state.countries[
 					e.nativeEvent.originalTarget.attributes[2].nodeValue
-				][0];
+				][0],
+			});
+
 			this.forceUpdate();
 		};
 
 		const handleChange = (panel) => (event, isExpanded) => {
-			this.state.clicked = false;
+			this.setState({ clicked: false });
 			this.forceUpdate();
 		};
 
-		if (this.state.clicked == false && this.state.countries[0]) {
+		if (this.state.clicked === false && this.state.countries[0]) {
 			return (
 				<div className="chart">
 					<VictoryChart
@@ -104,7 +106,7 @@ class Topics extends React.Component {
 				</div>
 			);
 		} else {
-			this.state.clicked = false;
+			// this.setState({ clicked: false });
 			return (
 				<div>
 					<div className="sntBtn">

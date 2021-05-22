@@ -3,7 +3,6 @@ import { css } from "@emotion/core";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
@@ -14,7 +13,7 @@ const override = css`
 `;
 
 function Loader() {
-	let [loading, setLoading] = useState(true);
+	let [loading] = useState(true);
 
 	return (
 		<div className="sweet-loading">
