@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import PixiOverlay from "react-leaflet-pixi-overlay";
 import { Map, TileLayer } from "react-leaflet";
-import { renderToString } from "react-dom/server";
 import Markers from "./Markers";
-import HeatmapLayer from "react-leaflet-heatmap-layer";
 import Loader from "./Loader";
 
 const TestMap = (state) => {

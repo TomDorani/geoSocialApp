@@ -1,8 +1,4 @@
-import { ListItemSecondaryAction, Typography } from "@material-ui/core";
 import React from "react";
-import ReactDOM from "react-dom";
-import { Marker, Popup } from "react-leaflet";
-import { renderToString } from "react-dom/server";
 import PixiOverlay from "react-leaflet-pixi-overlay";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 
@@ -44,7 +40,7 @@ const filterTweets = (tweets, search) => {
 
 	var filteredTweets = [];
 
-	if (search.length == 0) {
+	if (search.length === 0) {
 		filteredTweets = tweets;
 	} else {
 		tweets.forEach((tweet) => {
@@ -53,7 +49,7 @@ const filterTweets = (tweets, search) => {
 				word = " " + word + " ";
 				let text = " " + tweet.text + " ";
 				let flag = text.includes(word);
-				if (flag == true) {
+				if (flag === true) {
 					counter++;
 				}
 			});
@@ -75,8 +71,6 @@ const EventsCreator = (state) => {
 		if (item.coordinate) {
 			let cord = JSON.parse(item.coordinate);
 			const position = [cord[0], cord[1]];
-			const text = `"` + item.text + `"`;
-			const authur = item.author + " says:";
 
 			return {
 				id: item.id,
@@ -86,12 +80,13 @@ const EventsCreator = (state) => {
 				position: position,
 				popup: "",
 				popupOpen: false,
-				tooltip: `"` + item.text + `"` + " by " + item.author,
+				tooltip: `"` + item.text + `" by` + item.author,
 			};
 		}
+		return undefined;
 	});
 
-	if (state.heatMap == false) {
+	if (state.heatMap === false) {
 		return <PixiOverlay markers={markers} />;
 	} else {
 		return (
