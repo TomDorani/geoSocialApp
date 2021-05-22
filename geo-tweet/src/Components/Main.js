@@ -315,7 +315,7 @@ export default function PersistentDrawerLeft() {
 							justify="center"
 							alignItems="flex-start"
 						>
-							<Grid item direction="row">
+							<Grid>
 								<TextField
 									id="standard-basic"
 									label="KeyWords"

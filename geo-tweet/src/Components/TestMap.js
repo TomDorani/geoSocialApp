@@ -7,6 +7,22 @@ const TestMap = (state) => {
 	const [zoom, setZoom] = useState(3);
 	const [isload, setIsLoad] = useState(true);
 	const [tweets, setTweets] = useState([]);
+	const [hight, setHight] = useState(window.innerHeight);
+	const [width, setWitdh] = useState(window.innerWidth);
+
+	useEffect(() => {
+		const updateWindowDimensions = () => {
+			let newHeight = window.innerHeight;
+			let newidth = window.innerWidth;
+			setHight(newHeight);
+			setWitdh(newidth);
+			console.log("updating size");
+		};
+
+		window.addEventListener("resize", updateWindowDimensions);
+
+		return () => window.removeEventListener("resize", updateWindowDimensions);
+	}, []);
 
 	useEffect(() => {
 		const bringTweets = async () => {
@@ -30,30 +46,6 @@ const TestMap = (state) => {
 
 	console.log("zoom ", zoom);
 
-	// const markers = [
-	// 		{
-	// 			id: "1",
-	// 			iconColor: "red",
-	// 			position: [-36.814, 145.96332],
-	// 			popup: renderToString(<div>All good!</div>),
-	// 			// onClick: () => alert("marker clicked"),
-	// 			tooltip: "Hey!",
-	// 			country: "israel",
-	// 		},
-	// 		{
-	// 			id: "2",
-	// 			iconColor: "blue",
-	// 			position: [-37.814, 144.96332],
-	// 			popup: "Quack!",
-	// 			popupOpen: true, // if popup has to be open by default
-	// 			// onClick: () => alert("marker clicked"),
-	// 			tooltip: "Nice!",
-	// 		},
-	//
-	//
-	// ];
-	const h = window.innerHeight;
-	const w = window.innerWidth;
 	if (isload) {
 		return <Loader loading={isload} />;
 	} else {
@@ -68,8 +60,8 @@ const TestMap = (state) => {
 				>
 					<Map
 						style={{
-							height: h * 0.9,
-							width: w * 0.99,
+							height: hight * 0.99,
+							width: width * 0.99,
 							paddingTop: "10%",
 							position: "initial",
 							outline: "auto",

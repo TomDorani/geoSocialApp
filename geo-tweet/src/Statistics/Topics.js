@@ -106,7 +106,7 @@ class Topics extends React.Component {
 				</div>
 			);
 		} else {
-			this.setState({ clicked: false });
+			// this.setState({ clicked: false });
 			return (
 				<div>
 					<div className="sntBtn">
