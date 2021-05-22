@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -27,16 +27,19 @@ import Grid from "@material-ui/core/Grid";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import ToggleButtons from "./Toggle";
 import "../CSS/Drawer.css";
-import { Map } from "./Map";
-import { Marker } from "react-leaflet";
+// import { Map } from "./Map";
 import Modal from "@material-ui/core/Modal";
 import BasicTable from "./Table";
 import Button from "@material-ui/core/Button";
-import Bars from "./Bars";
-import L from "leaflet";
-import "leaflet.markercluster";
+import TestMap from "./TestMap";
+import Country from "../Statistics/Country"
+import Topics from "../Statistics/Topics"
+import Sent from "../Statistics/Sentimental"
+import Accordion from "./Accordion"
 
-const drawerWidth = "50vmin";
+
+import { Dialog } from "@material-ui/core";
+const drawerWidth = "80vmin";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -80,7 +83,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		// padding: theme.spacing(3),
 		transition: theme.transitions.create("margin", {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -96,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getModalStyle() {
-	const top = 50;
-	const left = 50;
+	const top = 20;
+	const left = 20;
 
 	return {
 		top: `${top}%`,
@@ -108,18 +110,21 @@ function getModalStyle() {
 
 export default function PersistentDrawerLeft() {
 	const [state, setState] = useState({
-		checkedA: false,
-		checkedB: false,
-		// allTweets : [],
-		// relevantTweets : [],
+		heatMap: false,
+		keyWords:'',
+
 	});
+
 	const [search, setSearch] = useState([]);
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const [modalStyle] = React.useState(getModalStyle);
+	const [modalStyle] = useState(getModalStyle);
+	const [keyWords, setKeywords] = useState();
 
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
+	const [topicIsOpen, setTopicIsOpen] = useState(false);
+
 
 	const handleModalOpen = () => {
 		setModalIsOpen(true);
@@ -140,6 +145,19 @@ export default function PersistentDrawerLeft() {
 		setContactUsIsOpen(false);
 	};
 
+	const topicOpen = () => {
+		console.log("Contact Us");
+		setTopicIsOpen(true);
+	};
+
+	const topicClose = () => {
+		console.log("Contact Us");
+		setTopicIsOpen(false);
+	};
+
+
+
+
 	const useStyles = makeStyles((theme) => ({
 		paper: {
 			position: "absolute",
@@ -153,10 +171,33 @@ export default function PersistentDrawerLeft() {
 
 	const classes = useStyles();
 
-	const body = (
+	const countryBody = (
 		<div style={modalStyle} className={classes.paper}>
-			<h2 id="simple-modal-title">Statistics</h2>
-			<BasicTable />
+			<h2 id="simple-modal-title">Segmentation by countries</h2>
+			<Button
+					variant="outlined"
+					size="medium"
+					color="primary"
+					style={{ marginLeft: "42%" }}
+				>
+					Sentimental View
+				</Button>
+			<Country/>
+			
+		</div>
+	);
+	const topicBody = (
+		<div style={modalStyle} className={classes.paper}>
+			<h2 id="simple-modal-title">Segmentation by topics</h2>
+			<Button
+					variant="outlined"
+					size="medium"
+					color="primary"
+					style={{ marginLeft: "42%" }}
+				>
+					Sentimental View
+				</Button>
+			<Sent/>
 		</div>
 	);
 
@@ -180,7 +221,7 @@ export default function PersistentDrawerLeft() {
 				<Button
 					variant="outlined"
 					size="medium"
-					color="black"
+					color="inherit"
 					style={{ marginLeft: "90%" }}
 				>
 					Submit
@@ -190,29 +231,16 @@ export default function PersistentDrawerLeft() {
 	);
 
 	const checkSearch = (event) => {
-		var words = event.target.value;
-		words = words.split(" ");
+
+		if(state.search == '' || state.search == null){
+			setSearch([]);
+		}
+		else{
+		let words = state.search.split(" ");
+		console.log("key,words:", words);
 		setSearch(words);
-		console.log("checksearch:", search);
-		// for(let tweet of state.allTweets){
-		//   count = 0;
-		//   for(let word of words){
-		//     tweet.text = " " + tweet.text + " ";
-		//     var flag = tweet.text.includes(" " +word+ " ");
-		//     if(flag == true){
-		//       count +=1;
-		//       break;
-		//     }
+		}
 
-		//   }
-		// console.log(count);
-		// console.log(words.length / 2);
-		// if(count >= words.length/2){
-		//   state.relevantTweets.push(tweet);
-		//   }
-
-		// }
-		// console.log(state);
 	};
 
 	const handleDrawerOpen = () => {
@@ -222,32 +250,14 @@ export default function PersistentDrawerLeft() {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
-
 	const handleChange = (event) => {
-		state.relevantTweets = [];
-
-		// state.allTweets = [
-		// 	{
-		// 		Height: 0,
-		// 		Width: 0,
-		// 		text: "fa fa bi fa ti na mi",
-		// 		coordinates: [-79.9372, 32.7872],
-		// 	},
-		// 	{
-		// 		Height: 0,
-		// 		Width: 0,
-		// 		text: "fa fa bi fa ti na mi",
-		// 		coordinates: [-78.9372, 33.7872],
-		// 	},
-		// ];
-		// console.log("here");
-		// var cluster = L.markerClusterGroup();
 		setState({ ...state, [event.target.name]: event.target.checked });
-		// for (let tweet of state.allTweets) {
-		// 	cluster.addLayer(L.marker(tweet.coordinates));
-		// }
+	}
 
-		// state.cluster = cluster;
+	const searchChange = (event) => {
+
+		state.search = event.target.value;
+
 	};
 
 	const m = [
@@ -300,7 +310,7 @@ export default function PersistentDrawerLeft() {
 					<Typography
 						variant="h6"
 						noWrap
-						style={{ padding: "25px", marginInlineEnd: "45%" }}
+						style={{ padding: "20px", marginInlineEnd: "35%" }}
 					>
 						Geo Tweet
 					</Typography>
@@ -324,32 +334,35 @@ export default function PersistentDrawerLeft() {
 							justify="center"
 							alignItems="flex-start"
 						>
-							<TextField
-								id="standard-basic"
-								label="KeyWords"
-								onChange={checkSearch}
-							/>
-							<Button variant="contained" color="primary">
-								Search
-							</Button>
-							<FormGroup className="switch">
-								<FormControlLabel
-									control={
-										<Switch
-											checked={state.checkedA}
-											onChange={handleChange}
-											name="checkedA"
-											color="primary"
-										/>
-									}
-									label="Cluster Layer"
+							<Grid item direction="row">
+								<TextField
+									id="standard-basic"
+									label="KeyWords"
+									onChange={(e) => {
+										searchChange(e);
+									}}
 								/>
+								<Button
+									className = "searchbtn"
+									variant="contained"
+									color="primary"
+									onClick={(e) => {
+										checkSearch(e);
+									}}
+								>
+									Search
+								</Button>
+							</Grid>
+							<FormGroup className="switch">
+	
 								<FormControlLabel
+
+									className = "heatMapSwitch"
 									control={
 										<Switch
-											checked={state.checkedB}
+											checked={state.heatMap}
 											onChange={handleChange}
-											name="checkedB"
+											name="heatMap"
 											color="primary"
 										/>
 									}
@@ -358,23 +371,30 @@ export default function PersistentDrawerLeft() {
 							</FormGroup>
 						</Grid>
 
-						<FormControl component="fieldset">
+						{/* <FormControl component="fieldset">
 							<FormLabel component="legend">View</FormLabel>
 							<br></br>
 							<div className="gap">
 								<ToggleButtons></ToggleButtons>
 							</div>
-						</FormControl>
+						</FormControl> */}
 					</Container>
 				</List>
 				<Divider />
 				<List>
-					<ListItem button key={"Show Statistics"} onClick={handleModalOpen}>
+					<Accordion search ={search}></Accordion>
+					{/* <ListItem button key={"Country Statistics"} onClick={handleModalOpen}>
 						<ListItemIcon>
 							<EqualizerIcon />
 						</ListItemIcon>
-						<ListItemText primary={"Show Statistics"} />
+						<ListItemText primary={"Country Statistics"} />
 					</ListItem>
+					<ListItem button key={"Topic Statistics"} onClick={topicOpen}>
+						<ListItemIcon>
+							<EqualizerIcon />
+						</ListItemIcon>
+						<ListItemText primary={"Topic Statistics"} />
+					</ListItem> */}
 					<ListItem button key={"Contact Us"} onClick={contactUsOpen}>
 						<ListItemIcon>
 							<MailIcon />
@@ -389,25 +409,33 @@ export default function PersistentDrawerLeft() {
 				})}
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
-				<Map search={search} />
+				{/* <Map search={search} /> */}
+				<TestMap search ={search} heatMap = {state.heatMap}/>
 			</main>
 
 			<Modal
 				id="modal"
 				open={modalIsOpen}
 				onClose={handleModalClose}
-				// aria-labelledby="simple-modal-title"
-				// aria-describedby="simple-modal-description"
+				className = "CountryModal"
+			
 			>
-				{body}
+				{countryBody}
+			</Modal>
+			<Modal
+				id="TopicModal"
+				open={topicIsOpen}
+				onClose={topicClose}
+			
+			>
+				{topicBody}
 			</Modal>
 
 			<Modal
 				id="contactUsModal"
 				open={contactUsIsOpen}
 				onClose={contactUsClose}
-				// aria-labelledby="simple-modal-title"
-				// aria-describedby="simple-modal-description"
+	
 			>
 				{contactUsBody}
 			</Modal>
