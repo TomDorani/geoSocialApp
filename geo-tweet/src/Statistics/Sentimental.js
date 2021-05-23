@@ -87,7 +87,7 @@ class Sent extends React.Component {
 
 		if (this.state.isloading) {
 			return (
-				<Box span>
+				<Box>
 					<Loader loading={this.state.isloading} />
 				</Box>
 			);

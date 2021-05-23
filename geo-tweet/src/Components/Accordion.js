@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ControlledAccordions(state) {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
-	console.log("accor state" + state.search);
+	// console.log("accor state" + state.search);
 
 	const handleChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);

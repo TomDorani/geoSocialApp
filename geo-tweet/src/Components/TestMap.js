@@ -11,6 +11,7 @@ const TestMap = (state) => {
 	const [width, setWitdh] = useState(window.innerWidth);
 
 	useEffect(() => {
+		console.log("state", state);
 		const updateWindowDimensions = () => {
 			let newHeight = window.innerHeight;
 			let newidth = window.innerWidth;
@@ -28,15 +29,15 @@ const TestMap = (state) => {
 		const bringTweets = async () => {
 			const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/`);
 			const data = await res.json();
-			console.log("data:", data);
+			console.log("data fetched from server");
 
 			setTweets(data);
 			setIsLoad(false);
 		};
 		bringTweets();
 
-		console.log(tweets);
-		console.log(tweets[0]);
+		// console.log(tweets);
+		// console.log(tweets[0]);
 	}, [tweets]);
 
 	console.log("zoom ", zoom);
@@ -80,6 +81,7 @@ const TestMap = (state) => {
 						<Markers
 							markersArr={tweets}
 							search={state.search}
+							sentifilter={state.sentiFilter}
 							zoom={zoom}
 							heatMap={state.heatMap}
 						></Markers>

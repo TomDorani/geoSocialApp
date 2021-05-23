@@ -42,12 +42,12 @@ class Country extends React.Component {
 				][0],
 			});
 
-			this.forceUpdate();
+			// this.forceUpdate();
 		};
 
 		const handleChange = (panel) => (event, isExpanded) => {
 			this.setState({ clicked: false });
-			this.forceUpdate();
+			// this.forceUpdate();
 		};
 
 		if (this.state.clicked === false && this.state.countries[0]) {
