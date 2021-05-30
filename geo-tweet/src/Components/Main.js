@@ -29,7 +29,11 @@ import TestMap from "./TestMap";
 import Country from "../Statistics/Country";
 import Sent from "../Statistics/Sentimental";
 import Accordion from "./Accordion";
+
 import SentiFilter from "./sentifilter";
+
+
+
 
 function getModalStyle() {
 	const top = 20;
@@ -206,7 +210,7 @@ export default function PersistentDrawerLeft() {
 						color="inherit"
 						aria-label="open drawer"
 						onClick={handleDrawerOpen}
-						edge="start"
+						// edge="start"
 						className={clsx(classes.menuButton, open && classes.hide)}
 					>
 						<MenuIcon />

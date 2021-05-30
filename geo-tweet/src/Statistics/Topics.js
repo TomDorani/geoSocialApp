@@ -40,11 +40,11 @@ class Topics extends React.Component {
 
 	render() {
 		const clicked = (e) => {
+			console.log("hey click", e);
+			console.log("bar", e.datum.x);
 			this.setState({ clicked: true });
 			this.setState({
-				bar: this.state.countries[
-					e.nativeEvent.originalTarget.attributes[2].nodeValue
-				][0],
+				bar: e.datum.x,
 			});
 
 			// this.forceUpdate();
@@ -102,7 +102,13 @@ class Topics extends React.Component {
 									target: "data",
 									eventHandlers: {
 										onClick: (e) => {
-											clicked(e);
+											// clicked(e);
+                      return [{
+                        target: "data",
+                        mutation: (props) => {
+                          clicked(props);
+                        }
+                      }];
 										},
 									},
 								},
