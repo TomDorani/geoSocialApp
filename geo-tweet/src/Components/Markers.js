@@ -36,7 +36,7 @@ const itemIDPick = (zoom, senti) => {
 };
 
 const filterTweets = (tweets, search, sentifilter) => {
-	console.log("filtring", sentifilter);
+	//console.log("filtring", sentifilter);
 
 	var filteredTweets = [];
 
@@ -59,19 +59,19 @@ const filterTweets = (tweets, search, sentifilter) => {
 		});
 	}
 	if (sentifilter !== "ALL") {
-		console.log("senti filtering....");
+		// console.log("senti filtering....");
 		filteredTweets = filteredTweets.filter(function (tw) {
 			return tw.sentimental === sentifilter;
 		});
 	}
 
-	console.log("tweets len: ", filteredTweets.length);
+	// console.log("tweets len: ", filteredTweets.length);
 	return filteredTweets;
 };
 const EventsCreator = (state) => {
-	console.log("heatMap : " + state.heatMap);
-	console.log("search : " + state.search);
-	console.log("senti : ", state.sentifilter);
+	// console.log("heatMap : " + state.heatMap);
+	// console.log("search : " + state.search);
+	// console.log("senti : ", state.sentifilter);
 	const filteredTweets = filterTweets(
 		state.markersArr,
 		state.search,

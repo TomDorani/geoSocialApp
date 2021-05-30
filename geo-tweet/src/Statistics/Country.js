@@ -4,7 +4,8 @@ import Sent from "./Sentimental";
 import "../CSS/Drawer.css";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-
+import Loader from "./../Components/Loader";
+import Box from "@material-ui/core/Box";
 const countries = [];
 
 class Country extends React.Component {
@@ -18,6 +19,7 @@ class Country extends React.Component {
 			style: {
 				data: { fill: "tomato" },
 			},
+			isloading: true,
 		};
 	}
 
@@ -28,6 +30,7 @@ class Country extends React.Component {
 			.then((response) => response.json())
 			.then((res) => {
 				this.setState({ countries: res });
+				this.setState({ isloading: false });
 			});
 	}
 
@@ -47,15 +50,20 @@ class Country extends React.Component {
 			this.setState({ clicked: false });
 			// this.forceUpdate();
 		};
-
-		if (this.state.clicked === false && this.state.countries[0]) {
+		if (this.state.isloading) {
+			return (
+				<Box>
+					<Loader loading={this.state.isloading} />
+				</Box>
+			);
+		} else if (this.state.clicked === false && this.state.countries[0]) {
 			return (
 				<div className="chart">
 					<VictoryChart
 						domainPadding={30}
 						padding={{ left: 80, right: 100, bottom: 50, top: 20 }}
 						height={385}
-						width={550}
+						width={650}
 					>
 						<VictoryBar
 							cornerRadius={{ topLeft: 10 }}
@@ -96,12 +104,14 @@ class Country extends React.Component {
 									eventHandlers: {
 										onClick: (e) => {
 											// clicked(e);
-                      return [{
-                        target: "data",
-                        mutation: (props) => {
-                          clicked(props);
-                        }
-                      }];
+											return [
+												{
+													target: "data",
+													mutation: (props) => {
+														clicked(props);
+													},
+												},
+											];
 										},
 									},
 								},
@@ -113,7 +123,7 @@ class Country extends React.Component {
 		} else {
 			// this.setState({ clicked: false });
 			return (
-				<div>
+				<Box component="span" className="chart" style={{ width: "100%" }}>
 					<div className="sntBtn">
 						<IconButton onClick={handleChange()} style={{ color: "grey" }}>
 							<ChevronLeftIcon />
@@ -125,7 +135,7 @@ class Country extends React.Component {
 						country={this.state.bar}
 						flag="country"
 					></Sent>
-				</div>
+				</Box>
 			);
 		}
 	}

@@ -23,52 +23,15 @@ class Sent extends React.Component {
 	}
 
 	render() {
+		const topic = {
+			0: "opinions",
+			1: "casual",
+			2: "greeting",
+			3: "jobs",
+			4: "meta tweets",
+		};
 		console.log(this.state.sent);
 
-		//   const sentFunc = (tweets) => {
-
-		//     var positive = 0;
-		//     var negative = 0;
-		//     var neutral = 0;
-		//     var mixed = 0;
-		//     var sent = [];
-
-		//     tweets.forEach(element => {
-
-		//       if(element.sentimental == "positive"){
-		//         positive++;
-		//       }
-		//       else if(element.sentimental == "negative"){
-		//         negative++
-		//       }
-		//       else if(element.sentimental == "neutral"){
-		//         neutral++
-		//       }
-		//       else {
-		//         mixed++
-		//       }
-
-		//     });
-
-		//     sent.push(positive);
-		//     sent.push(negative);
-		//     sent.push(neutral);
-		//     sent.push(mixed);
-		//     return sent;
-		// };
-
-		// const tweets = [
-		//   {
-		//     id: 1 ,
-		//     sentimental : "positive",
-		//     text : "hi"
-		//   },
-		//   {
-		//     id: 2 ,
-		//     sentimental : "negative",
-		//     text : "hi"
-		//   }
-		// ]
 		const values = [];
 		values.push(this.state.sent["POSITIVE"]);
 		values.push(this.state.sent["NEGATIVE"]);
@@ -94,7 +57,12 @@ class Sent extends React.Component {
 		} else {
 			return (
 				<div>
-					<h4>{this.props.country}</h4>
+					{this.props.flag === "topic" ? (
+						<h4>{topic[this.props.country]}</h4>
+					) : (
+						<h4>{this.props.country}</h4>
+					)}
+
 					<i className="sentLegend">Positive</i>
 					<svg
 						className="sentIcon"

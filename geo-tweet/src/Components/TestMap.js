@@ -11,7 +11,6 @@ const TestMap = (state) => {
 	const [width, setWitdh] = useState(window.innerWidth);
 
 	useEffect(() => {
-		console.log("state", state);
 		const updateWindowDimensions = () => {
 			let newHeight = window.innerHeight;
 			let newidth = window.innerWidth;
@@ -38,9 +37,9 @@ const TestMap = (state) => {
 
 		// console.log(tweets);
 		// console.log(tweets[0]);
-	}, [tweets]);
+	}, []);
 
-	console.log("zoom ", zoom);
+	// console.log("zoom ", zoom);
 
 	if (isload) {
 		return <Loader loading={isload} />;

@@ -32,9 +32,6 @@ import Accordion from "./Accordion";
 
 import SentiFilter from "./sentifilter";
 
-
-
-
 function getModalStyle() {
 	const top = 20;
 	const left = 20;
