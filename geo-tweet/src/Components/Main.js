@@ -34,9 +34,9 @@ import Accordion from "./Accordion";
 // const drawerWidth = "80vmin";
 
 // const useStyles = makeStyles((theme) => ({
-// 	root: {
-// 		display: "flex",
-// 	},
+// // 	root: {
+// // 		display: "flex",
+// // 	},
 // 	appBar: {
 // 		transition: theme.transitions.create(["margin", "width"], {
 // 			easing: theme.transitions.easing.sharp,
@@ -44,8 +44,8 @@ import Accordion from "./Accordion";
 // 		}),
 // 	},
 // 	appBarShift: {
-// 		width: `calc(100% - ${drawerWidth}px)`,
-// 		marginLeft: drawerWidth,
+// 		// width: `calc(100% - ${drawerWidth}px)`,
+// 		// marginLeft: drawerWidth,
 // 		transition: theme.transitions.create(["margin", "width"], {
 // 			easing: theme.transitions.easing.easeOut,
 // 			duration: theme.transitions.duration.enteringScreen,
@@ -270,7 +270,7 @@ export default function PersistentDrawerLeft() {
 						color="inherit"
 						aria-label="open drawer"
 						onClick={handleDrawerOpen}
-						edge="start"
+						// edge="start"
 						className={clsx(classes.menuButton, open && classes.hide)}
 					>
 						<MenuIcon />
