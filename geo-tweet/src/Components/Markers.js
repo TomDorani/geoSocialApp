@@ -35,8 +35,8 @@ const itemIDPick = (zoom, senti) => {
 	}
 };
 
-const filterTweets = (tweets, search) => {
-	console.log(tweets[0]);
+const filterTweets = (tweets, search, sentifilter) => {
+	console.log("filtring", sentifilter);
 
 	var filteredTweets = [];
 
@@ -58,6 +58,12 @@ const filterTweets = (tweets, search) => {
 			}
 		});
 	}
+	if (sentifilter !== "ALL") {
+		console.log("senti filtering....");
+		filteredTweets = filteredTweets.filter(function (tw) {
+			return tw.sentimental === sentifilter;
+		});
+	}
 
 	console.log("tweets len: ", filteredTweets.length);
 	return filteredTweets;
@@ -65,8 +71,12 @@ const filterTweets = (tweets, search) => {
 const EventsCreator = (state) => {
 	console.log("heatMap : " + state.heatMap);
 	console.log("search : " + state.search);
-
-	const filteredTweets = filterTweets(state.markersArr, state.search);
+	console.log("senti : ", state.sentifilter);
+	const filteredTweets = filterTweets(
+		state.markersArr,
+		state.search,
+		state.sentifilter
+	);
 	const markers = filteredTweets.map((item) => {
 		if (item.coordinate) {
 			let cord = JSON.parse(item.coordinate);

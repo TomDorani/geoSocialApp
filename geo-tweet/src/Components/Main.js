@@ -30,64 +30,10 @@ import Country from "../Statistics/Country";
 import Sent from "../Statistics/Sentimental";
 import Accordion from "./Accordion";
 
-// import { Dialog } from "@material-ui/core";
-// const drawerWidth = "80vmin";
+import SentiFilter from "./sentifilter";
 
-// const useStyles = makeStyles((theme) => ({
-// // 	root: {
-// // 		display: "flex",
-// // 	},
-// 	appBar: {
-// 		transition: theme.transitions.create(["margin", "width"], {
-// 			easing: theme.transitions.easing.sharp,
-// 			duration: theme.transitions.duration.leavingScreen,
-// 		}),
-// 	},
-// 	appBarShift: {
-// 		// width: `calc(100% - ${drawerWidth}px)`,
-// 		// marginLeft: drawerWidth,
-// 		transition: theme.transitions.create(["margin", "width"], {
-// 			easing: theme.transitions.easing.easeOut,
-// 			duration: theme.transitions.duration.enteringScreen,
-// 		}),
-// 	},
-// 	menuButton: {
-// 		marginRight: theme.spacing(2),
-// 	},
-// 	hide: {
-// 		display: "none",
-// 	},
-// 	drawer: {
-// 		width: drawerWidth,
-// 		flexShrink: 0,
-// 	},
-// 	drawerPaper: {
-// 		width: drawerWidth,
-// 	},
-// 	drawerHeader: {
-// 		display: "flex",
-// 		alignItems: "center",
 
-// 		padding: theme.spacing(0, 1),
-// 		// necessary for content to be below app bar
-// 		...theme.mixins.toolbar,
-// 		justifyContent: "flex-end",
-// 	},
-// 	content: {
-// 		flexGrow: 1,
-// 		transition: theme.transitions.create("margin", {
-// 			easing: theme.transitions.easing.sharp,
-// 			duration: theme.transitions.duration.leavingScreen,
-// 		}),
-// 	},
-// 	contentShift: {
-// 		transition: theme.transitions.create("margin", {
-// 			easing: theme.transitions.easing.easeOut,
-// 			duration: theme.transitions.duration.enteringScreen,
-// 		}),
-// 		marginLeft: 0,
-// 	},
-// }));
+
 
 function getModalStyle() {
 	const top = 20;
@@ -107,19 +53,13 @@ export default function PersistentDrawerLeft() {
 	});
 
 	const [search, setSearch] = useState([]);
+	const [senti, setSenti] = useState("ALL");
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalStyle] = useState(getModalStyle);
-	// const [keyWords, setKeywords] = useState();
-
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
 	const [topicIsOpen, setTopicIsOpen] = useState(false);
-
-	// const handleModalOpen = () => {
-	// 	setModalIsOpen(true);
-	// 	console.log("open");
-	// };
 
 	const handleModalClose = () => {
 		setModalIsOpen(false);
@@ -347,33 +287,18 @@ export default function PersistentDrawerLeft() {
 									}
 									label="Heatmap Layer"
 								/>
+								<FormControlLabel
+									className="SentiSwitch"
+									control={<SentiFilter senti={senti} sentiChange={setSenti} />}
+									// label="Heatmap Layer"
+								/>
 							</FormGroup>
 						</Grid>
-
-						{/* <FormControl component="fieldset">
-							<FormLabel component="legend">View</FormLabel>
-							<br></br>
-							<div className="gap">
-								<ToggleButtons></ToggleButtons>
-							</div>
-						</FormControl> */}
 					</Container>
 				</List>
 				<Divider />
 				<List>
 					<Accordion search={search}></Accordion>
-					{/* <ListItem button key={"Country Statistics"} onClick={handleModalOpen}>
-						<ListItemIcon>
-							<EqualizerIcon />
-						</ListItemIcon>
-						<ListItemText primary={"Country Statistics"} />
-					</ListItem>
-					<ListItem button key={"Topic Statistics"} onClick={topicOpen}>
-						<ListItemIcon>
-							<EqualizerIcon />
-						</ListItemIcon>
-						<ListItemText primary={"Topic Statistics"} />
-					</ListItem> */}
 					<ListItem button key={"Contact Us"} onClick={contactUsOpen}>
 						<ListItemIcon>
 							<MailIcon />
@@ -388,8 +313,8 @@ export default function PersistentDrawerLeft() {
 				})}
 			>
 				<div className={classes.drawerHeader} style={{ marginTop: "4%" }} />
-				{/* <Map search={search} /> */}
-				<TestMap search={search} heatMap={state.heatMap} />
+
+				<TestMap search={search} heatMap={state.heatMap} sentiFilter={senti} />
 			</main>
 
 			<Modal

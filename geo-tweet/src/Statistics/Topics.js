@@ -6,7 +6,13 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 const countries = [];
-
+const topic = {
+	0: "opinions",
+	1: "casual",
+	2: "greeting",
+	3: "jobs",
+	4: "meta tweets",
+};
 class Topics extends React.Component {
 	constructor() {
 		super();
@@ -41,12 +47,12 @@ class Topics extends React.Component {
 				bar: e.datum.x,
 			});
 
-			this.forceUpdate();
+			// this.forceUpdate();
 		};
 
 		const handleChange = (panel) => (event, isExpanded) => {
 			this.setState({ clicked: false });
-			this.forceUpdate();
+			// this.forceUpdate();
 		};
 
 		if (this.state.clicked === false && this.state.countries[0]) {
@@ -71,23 +77,23 @@ class Topics extends React.Component {
 							}}
 							data={[
 								{
-									x: this.state.countries[0][0],
+									x: topic[this.state.countries[0][0]],
 									y: this.state.countries[0][1],
 								},
 								{
-									x: this.state.countries[1][0],
+									x: topic[this.state.countries[1][0]],
 									y: this.state.countries[1][1],
 								},
 								{
-									x: this.state.countries[2][0],
+									x: topic[this.state.countries[2][0]],
 									y: this.state.countries[2][1],
 								},
 								{
-									x: this.state.countries[3][0],
+									x: topic[this.state.countries[3][0]],
 									y: this.state.countries[3][1],
 								},
 								{
-									x: this.state.countries[4][0],
+									x: topic[this.state.countries[4][0]],
 									y: this.state.countries[4][1],
 								},
 							]}
