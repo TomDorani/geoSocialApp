@@ -29,7 +29,6 @@ import TestMap from "./TestMap";
 import Country from "../Statistics/Country";
 import Sent from "../Statistics/Sentimental";
 import Accordion from "./Accordion";
-
 import SentiFilter from "./sentifilter";
 
 function getModalStyle() {
@@ -90,6 +89,9 @@ export default function PersistentDrawerLeft() {
 			border: "2px solid #000",
 			boxShadow: theme.shadows[5],
 			padding: theme.spacing(3, 4, 3),
+		},
+		headline: {
+			alignSelf: "center",
 		},
 	}));
 
@@ -198,7 +200,7 @@ export default function PersistentDrawerLeft() {
 			<CssBaseline />
 			<AppBar
 				position="fixed"
-				className={clsx(classes.appBar, {
+				className={clsx(classes.appbar, {
 					[classes.appBarShift]: open,
 				})}
 			>
@@ -212,12 +214,13 @@ export default function PersistentDrawerLeft() {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
-						Geo Tweet
+					<Typography variant="h6" noWrap className={clsx(classes.headline)}>
+						Select, Analyse and Explore Geo-Tweets insight
 					</Typography>
 				</Toolbar>
 			</AppBar>
 			<Drawer
+				BackdropProps={{ invisible: true }}
 				anchor="left"
 				open={open}
 				classes={{
@@ -304,6 +307,7 @@ export default function PersistentDrawerLeft() {
 					</ListItem>
 				</List>
 			</Drawer>
+
 			<main
 				className={clsx(classes.content, {
 					[classes.contentShift]: open,
@@ -313,18 +317,6 @@ export default function PersistentDrawerLeft() {
 
 				<TestMap search={search} heatMap={state.heatMap} sentiFilter={senti} />
 			</main>
-
-			<Modal
-				id="modal"
-				open={modalIsOpen}
-				onClose={handleModalClose}
-				className="CountryModal"
-			>
-				{countryBody}
-			</Modal>
-			<Modal id="TopicModal" open={topicIsOpen} onClose={topicClose}>
-				{topicBody}
-			</Modal>
 
 			<Modal
 				id="contactUsModal"

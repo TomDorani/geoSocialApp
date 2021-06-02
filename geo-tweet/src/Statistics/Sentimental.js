@@ -81,7 +81,7 @@ class Sent extends React.Component {
 						width="7"
 						height="7"
 						viewBox="0 0 24 24"
-						fill="#d6d6c2"
+						fill="#3fb0cf"
 					>
 						<circle cx="12" cy="12" r="12" />
 					</svg>
