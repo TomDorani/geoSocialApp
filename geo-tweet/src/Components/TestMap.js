@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import Markers from "./Markers";
 import Loader from "./Loader";
-import TweetAlert from "./TweetAlert";
+// import TweetAlert from "./TweetAlert";
 import Legend from "./Legend";
 const TestMap = (state) => {
 	const [zoom, setZoom] = useState(3);
@@ -10,8 +10,8 @@ const TestMap = (state) => {
 	const [tweets, setTweets] = useState([]);
 	const [hight, setHight] = useState(window.innerHeight);
 	const [width, setWitdh] = useState(window.innerWidth);
-	const [showAlert, setShowAlert] = useState(false);
-	const [alertData, setAlertData] = useState({});
+	// const [showAlert, setShowAlert] = useState(false);
+	// const [alertData, setAlertData] = useState({});
 
 	const handleClick = (e) => {
 		console.log("object", state.setOpen);
@@ -54,19 +54,19 @@ const TestMap = (state) => {
 	} else {
 		return (
 			<>
-				<TweetAlert open={showAlert} data={alertData} />
+				{/* <TweetAlert open={showAlert} data={alertData} /> */}
 				<div
 					id="mapdiv"
 					style={{
 						position: "relative",
-						left: "1%",
-						top: "10%",
+						left: "0.5%",
+						top: "10px",
 					}}
 				>
 					<Map
 						style={{
-							height: hight * 0.9,
-							width: width * 0.98,
+							height: hight * 0.93,
+							width: width * 0.99,
 							outline: "auto",
 						}}
 						preferCanvas={true}
@@ -92,7 +92,7 @@ const TestMap = (state) => {
 							zoom={zoom}
 							heatMap={state.heatMap}
 							setOpen={handleClick}
-							setData={setAlertData}
+							// setData={setAlertData}
 						></Markers>
 					</Map>
 				</div>

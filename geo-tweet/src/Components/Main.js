@@ -26,8 +26,8 @@ import "../CSS/Drawer.css";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import TestMap from "./TestMap";
-import Country from "../Statistics/Country";
-import Sent from "../Statistics/Sentimental";
+// import Country from "../Statistics/Country";
+// import Sent from "../Statistics/Sentimental";
 import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
 
@@ -52,14 +52,14 @@ export default function PersistentDrawerLeft() {
 	const [senti, setSenti] = useState("ALL");
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+	// const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalStyle] = useState(getModalStyle);
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
-	const [topicIsOpen, setTopicIsOpen] = useState(false);
+	// const [topicIsOpen, setTopicIsOpen] = useState(false);
 
-	const handleModalClose = () => {
-		setModalIsOpen(false);
-	};
+	// const handleModalClose = () => {
+	// 	setModalIsOpen(false);
+	// };
 
 	const contactUsOpen = () => {
 		console.log("Contact Us");
@@ -76,10 +76,10 @@ export default function PersistentDrawerLeft() {
 	// 	setTopicIsOpen(true);
 	// };
 
-	const topicClose = () => {
-		console.log("Contact Us");
-		setTopicIsOpen(false);
-	};
+	// const topicClose = () => {
+	// 	console.log("Contact Us");
+	// 	setTopicIsOpen(false);
+	// };
 
 	const useStyles = makeStyles((theme) => ({
 		paper: {
@@ -97,34 +97,34 @@ export default function PersistentDrawerLeft() {
 
 	const classes = useStyles();
 
-	const countryBody = (
-		<div style={modalStyle} className={classes.paper}>
-			<h2 id="simple-modal-title">Segmentation by countries</h2>
-			<Button
-				variant="outlined"
-				size="medium"
-				color="primary"
-				style={{ marginLeft: "42%" }}
-			>
-				Sentimental View
-			</Button>
-			<Country />
-		</div>
-	);
-	const topicBody = (
-		<div style={modalStyle} className={classes.paper}>
-			<h2 id="simple-modal-title">Segmentation by topics</h2>
-			<Button
-				variant="outlined"
-				size="medium"
-				color="primary"
-				style={{ marginLeft: "42%" }}
-			>
-				Sentimental View
-			</Button>
-			<Sent />
-		</div>
-	);
+	// const countryBody = (
+	// 	<div style={modalStyle} className={classes.paper}>
+	// 		<h2 id="simple-modal-title">Segmentation by countries</h2>
+	// 		<Button
+	// 			variant="outlined"
+	// 			size="medium"
+	// 			color="primary"
+	// 			style={{ marginLeft: "42%" }}
+	// 		>
+	// 			Sentimental View
+	// 		</Button>
+	// 		<Country />
+	// 	</div>
+	// );
+	// const topicBody = (
+	// 	<div style={modalStyle} className={classes.paper}>
+	// 		<h2 id="simple-modal-title">Segmentation by topics</h2>
+	// 		<Button
+	// 			variant="outlined"
+	// 			size="medium"
+	// 			color="primary"
+	// 			style={{ marginLeft: "42%" }}
+	// 		>
+	// 			Sentimental View
+	// 		</Button>
+	// 		<Sent />
+	// 	</div>
+	// );
 
 	const contactUsBody = (
 		<div style={modalStyle} className={classes.paper}>

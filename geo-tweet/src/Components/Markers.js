@@ -2,7 +2,7 @@ import React from "react";
 import PixiOverlay from "react-leaflet-pixi-overlay";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 //import { Alert, AlertTitle } from "@material-ui/lab";
-import MuiAlert from "@material-ui/lab/Alert";
+// import MuiAlert from "@material-ui/lab/Alert";
 
 const colorSentiMap = {
 	MIXED: "#ffff66",
