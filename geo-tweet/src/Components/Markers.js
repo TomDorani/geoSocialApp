@@ -14,19 +14,19 @@ const colorSentiMap = {
 const iconByZoom = (zoom, senti) => {
 	let color = colorSentiMap[senti];
 
-	if (zoom < 5) {
+	if (zoom < 4) {
 		return (
 			'<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 24 24" stroke="blue" stroke-opacity="0.8" fill ="' +
 			color +
 			'"><circle cx="12" cy="12" r="12"/></svg>'
 		);
-	} else if (zoom < 8) {
+	} else if (zoom < 6) {
 		return (
 			'<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill ="' +
 			color +
 			'"><circle cx="12" cy="12" r="12"/></svg>'
 		);
-	} else if (zoom < 10) {
+	} else if (zoom < 8) {
 		return (
 			'<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"   fill = "' +
 			color +
@@ -42,11 +42,11 @@ const iconByZoom = (zoom, senti) => {
 };
 
 const itemIDPick = (zoom, senti) => {
-	if (zoom < 5) {
+	if (zoom < 4) {
 		return "zoom1" + senti;
-	} else if (zoom < 8) {
+	} else if (zoom < 6) {
 		return "zoom2" + senti;
-	} else if (zoom < 10) {
+	} else if (zoom < 8) {
 		return "zoom3" + senti;
 	} else {
 		return "zoom4" + senti;
@@ -54,7 +54,7 @@ const itemIDPick = (zoom, senti) => {
 };
 
 const tooltipCreator = (zoom, text) => {
-	if (zoom < 7) {
+	if (zoom < 6) {
 		return "";
 	} else {
 		return `" ` + text + ` "`;

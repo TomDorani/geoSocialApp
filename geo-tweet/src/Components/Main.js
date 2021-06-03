@@ -128,30 +128,8 @@ export default function PersistentDrawerLeft() {
 
 	const contactUsBody = (
 		<div style={modalStyle} className={classes.paper}>
-			<h2 id="contact-us-title">Contact Us</h2>
-			<TextField id="outlined-basic" label="Subject" />
-			<h4 id="contact-us-text-title">
-				Please provide a brief description of your issue.
-			</h4>
-
-			<TextField
-				id="outlined-multiline-static"
-				multiline
-				rows={4}
-				lable="Brief Description"
-				variant="outlined"
-				style={{ paddingRight: "60%" }}
-			/>
-			<div>
-				<Button
-					variant="outlined"
-					size="medium"
-					color="inherit"
-					style={{ marginLeft: "90%" }}
-				>
-					Submit
-				</Button>
-			</div>
+			<h2 id="contact-us-title">About Us</h2>
+			<h4 id="contact-us-text-title">we two student with project .....</h4>
 		</div>
 	);
 
