@@ -56,8 +56,10 @@ class Country extends React.Component {
 						padding={{ left: 80, right: 100, bottom: 50, top: 20 }}
 						height={385}
 						width={550}
+						labels = {{fontSize : 30}}
 					>
 						<VictoryBar
+							style={{ labels: { fontSize: 30, fill: "black" } }}
 							cornerRadius={{ topLeft: 10 }}
 							style={{
 								data: {
