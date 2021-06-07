@@ -5,8 +5,7 @@ import Loader from "./Loader";
 // import TweetAlert from "./TweetAlert";
 import Legend from "./Legend";
 
-
-const TestMap = (state) => {
+const MyMap = (state) => {
 	const [zoom, setZoom] = useState(3);
 	const [isload, setIsLoad] = useState(true);
 	const [tweets, setTweets] = useState([]);
@@ -94,7 +93,7 @@ const TestMap = (state) => {
 							zoom={zoom}
 							heatMap={state.heatMap}
 							setOpen={handleClick}
-							// setData={setAlertData}
+							//setData={setAlertData}
 						></Markers>
 					</Map>
 				</div>
@@ -102,4 +101,4 @@ const TestMap = (state) => {
 		);
 	}
 };
-export default TestMap;
+export default MyMap;

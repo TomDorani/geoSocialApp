@@ -63,9 +63,6 @@ export default function ControlledAccordions(state) {
 					id="panel2bh-header"
 				>
 					<Typography className={classes.heading}>Topic Statistics</Typography>
-					{/* <Typography className={classes.secondaryHeading}>
-            You are currently not an owner
-          </Typography> */}
 				</AccordionSummary>
 				<AccordionDetails>
 					{/* <Topics search={state.search}></Topics> */}
