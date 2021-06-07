@@ -15,7 +15,6 @@ export default function Main() {
 	const [search, setSearch] = useState([]);
 	const [heatMap, setHeatMap] = useState(false);
 	const [senti, setSenti] = useState("ALL");
-
 	const [open, setOpen] = useState(false);
 
 	const useStyles = makeStyles((theme) => ({

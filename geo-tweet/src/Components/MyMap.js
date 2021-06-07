@@ -101,4 +101,4 @@ const MyMap = (state) => {
 		);
 	}
 };
-export default MyMap;
+export default React.memo(MyMap);
