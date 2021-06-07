@@ -80,6 +80,8 @@ const filterTweets = (tweets, search, sentifilter) => {
 			search.forEach((word) => {
 				word = " " + word + " ";
 				let text = " " + tweet.text + " ";
+				word = word.toLowerCase();
+				text = text.toLowerCase();
 				let flag = text.includes(word);
 				if (flag === true) {
 					counter++;
