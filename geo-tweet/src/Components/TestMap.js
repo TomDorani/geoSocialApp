@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import Markers from "./Markers";
 import Loader from "./Loader";
+// import TweetAlert from "./TweetAlert";
+import Legend from "./Legend";
+
 
 const TestMap = (state) => {
 	const [zoom, setZoom] = useState(3);
@@ -9,6 +12,13 @@ const TestMap = (state) => {
 	const [tweets, setTweets] = useState([]);
 	const [hight, setHight] = useState(window.innerHeight);
 	const [width, setWitdh] = useState(window.innerWidth);
+	// const [showAlert, setShowAlert] = useState(false);
+	// const [alertData, setAlertData] = useState({});
+
+	const handleClick = (e) => {
+		console.log("object", state.setOpen);
+		state.setOpen = true;
+	};
 
 	useEffect(() => {
 		const updateWindowDimensions = () => {
@@ -46,19 +56,19 @@ const TestMap = (state) => {
 	} else {
 		return (
 			<>
+				{/* <TweetAlert open={showAlert} data={alertData} /> */}
 				<div
 					id="mapdiv"
 					style={{
-						paddingBottom: "50%",
-						position: "absolute",
+						position: "relative",
+						left: "0.5%",
+						top: "10px",
 					}}
 				>
 					<Map
 						style={{
-							height: hight * 0.99,
+							height: hight * 0.93,
 							width: width * 0.99,
-							paddingTop: "10%",
-							position: "initial",
 							outline: "auto",
 						}}
 						preferCanvas={true}
@@ -76,13 +86,15 @@ const TestMap = (state) => {
 							attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> '
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 						/>
-
+						<Legend />
 						<Markers
 							markersArr={tweets}
 							search={state.search}
 							sentifilter={state.sentiFilter}
 							zoom={zoom}
 							heatMap={state.heatMap}
+							setOpen={handleClick}
+							// setData={setAlertData}
 						></Markers>
 					</Map>
 				</div>

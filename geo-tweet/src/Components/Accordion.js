@@ -7,12 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Country from "../Statistics/Country";
 import Topics from "../Statistics/Topics";
+import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		width: "60vmin",
-	},
+	root: {},
 	heading: {
 		fontSize: theme.typography.pxToRem(15),
 		flexBasis: "100%",
@@ -47,10 +46,11 @@ export default function ControlledAccordions(state) {
 					<Typography className={classes.heading}>
 						Country Statistics
 					</Typography>
-					{/* <Typography className={classes.secondaryHeading}>I am an accordion</Typography> */}
 				</AccordionSummary>
 				<AccordionDetails>
-					<Country className="graph" search={state.search}></Country>
+					<Box component="span" className="chart" style={{ width: "100%" }}>
+						<Country className="graph" search={state.search}></Country>
+					</Box>
 				</AccordionDetails>
 			</Accordion>
 			<Accordion
@@ -68,7 +68,7 @@ export default function ControlledAccordions(state) {
           </Typography> */}
 				</AccordionSummary>
 				<AccordionDetails>
-					<Topics search={state.search}></Topics>
+					{/* <Topics search={state.search}></Topics> */}
 				</AccordionDetails>
 			</Accordion>
 		</div>

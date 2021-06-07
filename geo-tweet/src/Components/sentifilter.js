@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
 			margin: theme.spacing(1),
 		},
 	},
+	mix: { color: "#fffffd", backgroundColor: "#eaea7b" },
+	neg: { color: "#fffffd", backgroundColor: "#d16159" },
+	neo: { color: "#fffffd", backgroundColor: "#4fabc4" },
+	po: { color: "#fffffd", backgroundColor: "#5abf5a" },
 }));
 
 export default function SentiFilter(props) {
@@ -32,16 +36,20 @@ export default function SentiFilter(props) {
 				<ToggleButton value="ALL" id="all-btn">
 					All
 				</ToggleButton>
-				<ToggleButton value="POSITIVE" id="positive-btn">
+				<ToggleButton className={classes.po} value="POSITIVE" id="positive-btn">
 					Positive
 				</ToggleButton>
-				<ToggleButton value="NEGATIVE" id="negative-btn">
+				<ToggleButton
+					className={classes.neg}
+					value="NEGATIVE"
+					id="negative-btn"
+				>
 					Negative
 				</ToggleButton>
-				<ToggleButton value="NEUTRAL" id="natural-btn">
+				<ToggleButton className={classes.neo} value="NEUTRAL" id="natural-btn">
 					Natural
 				</ToggleButton>
-				<ToggleButton value="MIXED" id="mixed-btn">
+				<ToggleButton className={classes.mix} value="MIXED" id="mixed-btn">
 					Mixed
 				</ToggleButton>
 			</ToggleButtonGroup>

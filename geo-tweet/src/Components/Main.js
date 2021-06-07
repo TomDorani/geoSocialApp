@@ -26,11 +26,12 @@ import "../CSS/Drawer.css";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import TestMap from "./TestMap";
-import Country from "../Statistics/Country";
-import Sent from "../Statistics/Sentimental";
+// import Country from "../Statistics/Country";
+// import Sent from "../Statistics/Sentimental";
 import Accordion from "./Accordion";
-
 import SentiFilter from "./sentifilter";
+// import SideBar from "./SideBar";
+
 
 function getModalStyle() {
 	const top = 20;
@@ -53,14 +54,14 @@ export default function PersistentDrawerLeft() {
 	const [senti, setSenti] = useState("ALL");
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+	// const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalStyle] = useState(getModalStyle);
 	const [contactUsIsOpen, setContactUsIsOpen] = useState(false);
-	const [topicIsOpen, setTopicIsOpen] = useState(false);
+	// const [topicIsOpen, setTopicIsOpen] = useState(false);
 
-	const handleModalClose = () => {
-		setModalIsOpen(false);
-	};
+	// const handleModalClose = () => {
+	// 	setModalIsOpen(false);
+	// };
 
 	const contactUsOpen = () => {
 		console.log("Contact Us");
@@ -77,10 +78,10 @@ export default function PersistentDrawerLeft() {
 	// 	setTopicIsOpen(true);
 	// };
 
-	const topicClose = () => {
-		console.log("Contact Us");
-		setTopicIsOpen(false);
-	};
+	// const topicClose = () => {
+	// 	console.log("Contact Us");
+	// 	setTopicIsOpen(false);
+	// };
 
 	const useStyles = makeStyles((theme) => ({
 		paper: {
@@ -91,69 +92,51 @@ export default function PersistentDrawerLeft() {
 			boxShadow: theme.shadows[5],
 			padding: theme.spacing(3, 4, 3),
 		},
+		headline: {
+			alignSelf: "center",
+		},
 	}));
 
 	const classes = useStyles();
 
-	const countryBody = (
-		<div style={modalStyle} className={classes.paper}>
-			<h2 id="simple-modal-title">Segmentation by countries</h2>
-			<Button
-				variant="outlined"
-				size="medium"
-				color="primary"
-				style={{ marginLeft: "42%" }}
-			>
-				Sentimental View
-			</Button>
-			<Country />
-		</div>
-	);
-	const topicBody = (
-		<div style={modalStyle} className={classes.paper}>
-			<h2 id="simple-modal-title">Segmentation by topics</h2>
-			<Button
-				variant="outlined"
-				size="medium"
-				color="primary"
-				style={{ marginLeft: "42%" }}
-			>
-				Sentimental View
-			</Button>
-			<Sent />
-		</div>
-	);
+	// const countryBody = (
+	// 	<div style={modalStyle} className={classes.paper}>
+	// 		<h2 id="simple-modal-title">Segmentation by countries</h2>
+	// 		<Button
+	// 			variant="outlined"
+	// 			size="medium"
+	// 			color="primary"
+	// 			style={{ marginLeft: "42%" }}
+	// 		>
+	// 			Sentimental View
+	// 		</Button>
+	// 		<Country />
+	// 	</div>
+	// );
+	// const topicBody = (
+	// 	<div style={modalStyle} className={classes.paper}>
+	// 		<h2 id="simple-modal-title">Segmentation by topics</h2>
+	// 		<Button
+	// 			variant="outlined"
+	// 			size="medium"
+	// 			color="primary"
+	// 			style={{ marginLeft: "42%" }}
+	// 		>
+	// 			Sentimental View
+	// 		</Button>
+	// 		<Sent />
+	// 	</div>
+	// );
 
 	const contactUsBody = (
 		<div style={modalStyle} className={classes.paper}>
-			<h2 id="contact-us-title">Contact Us</h2>
-			<TextField id="outlined-basic" label="Subject" />
-			<h4 id="contact-us-text-title">
-				Please provide a brief description of your issue.
-			</h4>
-
-			<TextField
-				id="outlined-multiline-static"
-				multiline
-				rows={4}
-				lable="Brief Description"
-				variant="outlined"
-				style={{ paddingRight: "60%" }}
-			/>
-			<div>
-				<Button
-					variant="outlined"
-					size="medium"
-					color="inherit"
-					style={{ marginLeft: "90%" }}
-				>
-					Submit
-				</Button>
-			</div>
+			<h2 id="contact-us-title">About Us</h2>
+			<h4 id="contact-us-text-title">we two student with project .....</h4>
 		</div>
 	);
 
 	const checkSearch = (event) => {
+		console.log("checkSearch " + event)
 		if (state.search === "" || state.search == null) {
 			setSearch([]);
 		} else {
@@ -169,6 +152,8 @@ export default function PersistentDrawerLeft() {
 
 	const handleDrawerClose = () => {
 		setOpen(false);
+		state.search ="";
+
 	};
 	const handleChange = (event) => {
 		setState({ ...state, [event.target.name]: event.target.checked });
@@ -177,6 +162,8 @@ export default function PersistentDrawerLeft() {
 	const searchChange = (event) => {
 		state.search = event.target.value;
 	};
+
+	
 
 	// const m = [
 	// 	{
@@ -198,7 +185,7 @@ export default function PersistentDrawerLeft() {
 			<CssBaseline />
 			<AppBar
 				position="fixed"
-				className={clsx(classes.appBar, {
+				className={clsx(classes.appbar, {
 					[classes.appBarShift]: open,
 				})}
 			>
@@ -212,12 +199,13 @@ export default function PersistentDrawerLeft() {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
-						Geo Tweet
+					<Typography variant="h6" noWrap className={clsx(classes.headline)}>
+						Select, Analyse and Explore Geo-Tweets insight
 					</Typography>
 				</Toolbar>
 			</AppBar>
 			<Drawer
+				BackdropProps={{ invisible: true }}
 				anchor="left"
 				open={open}
 				classes={{
@@ -304,6 +292,7 @@ export default function PersistentDrawerLeft() {
 					</ListItem>
 				</List>
 			</Drawer>
+
 			<main
 				className={clsx(classes.content, {
 					[classes.contentShift]: open,
@@ -313,18 +302,6 @@ export default function PersistentDrawerLeft() {
 
 				<TestMap search={search} heatMap={state.heatMap} sentiFilter={senti} />
 			</main>
-
-			<Modal
-				id="modal"
-				open={modalIsOpen}
-				onClose={handleModalClose}
-				className="CountryModal"
-			>
-				{countryBody}
-			</Modal>
-			<Modal id="TopicModal" open={topicIsOpen} onClose={topicClose}>
-				{topicBody}
-			</Modal>
 
 			<Modal
 				id="contactUsModal"
