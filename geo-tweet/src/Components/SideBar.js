@@ -20,7 +20,7 @@ import SentiFilter from "./sentifilter";
 import AboutUs from "./AboutUs";
 
 const SideBar = (props) => {
-	console.log(props);
+	console.log("sidebar props", props);
 	const [searchText, setSearchText] = useState("");
 
 	const theme = useTheme();
@@ -52,7 +52,7 @@ const SideBar = (props) => {
 			console.log("key,words:", words);
 			props.setSearch(words);
 		}
-		// setSearchText("");
+		setSearchText("");
 	};
 
 	return (
@@ -70,8 +70,9 @@ const SideBar = (props) => {
 					noWrap
 					style={{ padding: "20px", marginInlineEnd: "35%" }}
 				>
-					Geo Tweet
+					{"Geo Tweet"}
 				</Typography>
+
 				<div className="DrawerButton">
 					<IconButton onClick={props.closeDrawer} style={{ color: "white" }}>
 						{theme.direction === "ltr" ? (
@@ -139,7 +140,7 @@ const SideBar = (props) => {
 			</List>
 			<Divider />
 			<List>
-				<Accordion search={searchText}></Accordion>
+				<Accordion search={props.search}></Accordion>
 				<AboutUs />
 			</List>
 		</Drawer>
