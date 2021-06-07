@@ -4,6 +4,8 @@ import Markers from "./Markers";
 import Loader from "./Loader";
 // import TweetAlert from "./TweetAlert";
 import Legend from "./Legend";
+
+
 const TestMap = (state) => {
 	const [zoom, setZoom] = useState(3);
 	const [isload, setIsLoad] = useState(true);
