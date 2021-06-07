@@ -30,6 +30,8 @@ import TestMap from "./TestMap";
 // import Sent from "../Statistics/Sentimental";
 import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
+// import SideBar from "./SideBar";
+
 
 function getModalStyle() {
 	const top = 20;
@@ -134,6 +136,7 @@ export default function PersistentDrawerLeft() {
 	);
 
 	const checkSearch = (event) => {
+		console.log("checkSearch " + event)
 		if (state.search === "" || state.search == null) {
 			setSearch([]);
 		} else {
@@ -149,6 +152,8 @@ export default function PersistentDrawerLeft() {
 
 	const handleDrawerClose = () => {
 		setOpen(false);
+		state.search ="";
+
 	};
 	const handleChange = (event) => {
 		setState({ ...state, [event.target.name]: event.target.checked });
@@ -157,6 +162,8 @@ export default function PersistentDrawerLeft() {
 	const searchChange = (event) => {
 		state.search = event.target.value;
 	};
+
+	
 
 	// const m = [
 	// 	{
