@@ -9,6 +9,8 @@ import Country from "../Statistics/Country";
 import Topics from "../Statistics/Topics";
 import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
+import CountryFunc from "./CountryFunc";
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -24,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledAccordions(state) {
+	console.log("country seearch " + state.search)
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
 	// console.log("accor state" + state.search);
@@ -65,7 +68,9 @@ export default function ControlledAccordions(state) {
 					<Typography className={classes.heading}>Topic Statistics</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					{/* <Topics search={state.search}></Topics> */}
+				<Box component="span" className="chart" style={{ width: "100%" }}>
+					<Topics className="graph" search={state.search}></Topics>
+				</Box>
 				</AccordionDetails>
 			</Accordion>
 		</div>

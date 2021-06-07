@@ -1,81 +1,82 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { VictoryBar, VictoryChart } from "victory";
-import Sent from "./Sentimental";
+import Sent from "../Statistics/Sentimental";
 import "../CSS/Drawer.css";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Loader from "./../Components/Loader";
 import Box from "@material-ui/core/Box";
-
 const countries = [];
-const topic = {
-	0: "opinions",
-	1: "casual",
-	2: "greeting",
-	3: "jobs",
-	4: "meta tweets",
+
+
+const state = {
+    clicked: false,
+    countries: [],
+    countriesData: [],
+    bar: "",
+    style: {
+        data: { fill: "tomato" },
+    },
+    isloading: true,
 };
+ 
 
-class Topics extends React.Component {
-	constructor() {
-		super();
+const CountryFunc = (props) => {
 
-		this.state = {
-			clicked: false,
-			countries: [],
-			countriesData: [],
-			bar: "",
-			style: {
-				data: { fill: "tomato" },
-			},
-			isloading: true,
-		};
-	}
 
-	componentDidMount() {
-		let coData = [];
+    const clicked = (e) => {
+        console.log("hey click", e);
+        console.log("bar", e.datum.x);
+        state({ clicked: true });
+        state({
+            bar: e.datum.x,
+        });
+
+        // this.forceUpdate();
+    };
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        state({ clicked: false });
+        // this.forceUpdate();
+    };
+
+    let coData = [];
+
+    useEffect(() => {
+    const query = async () => {
 		fetch(
-			`https://ancient-retreat-48472.herokuapp.com/api/topic?search=${this.props.search}`
+			`https://ancient-retreat-48472.herokuapp.com/api/country?search=${props.search}`
 		)
 			.then((response) => response.json())
 			.then((res) => {
-				this.setState({ countries: res });
-				console.log("country " + this.state.countries);
-				this.state.countries.forEach(element => {
-					coData.push({x: topic[element[0]],
+				state({ countries: res });
+				console.log("country " + state.countries);
+				state.countries.forEach(element => {
+					coData.push({x: element[0],
 							y: element[1],},)
 				});
 				console.log("coData " + coData);
-				this.setState({ countriesData: coData });
+				state({ countriesData: coData });
 
-				this.setState({ isloading: false });
-			});
-	}
-
-	render() {
-		const clicked = (e) => {
-			let res = Object.values(topic).indexOf(e.datum.x);
-			console.log("hey click", e);
-			console.log("bar", res);
-			this.setState({ clicked: true });
-			this.setState({
-				bar: res,
+				state({ isloading: false });
 			});
 
-			// this.forceUpdate();
-		};
+    };
 
-		const handleChange = (panel) => (event, isExpanded) => {
-			this.setState({ clicked: false });
-			// this.forceUpdate();
-		};
-		if (this.state.isloading) {
+    query();
+
+}, []);
+
+
+
+
+		if (state.isloading) {
 			return (
 				<Box>
-					<Loader loading={this.state.isloading} />
+					<Loader loading={state.isloading} />
 				</Box>
 			);
-		} else if (this.state.clicked === false && this.state.countries[0]) {
+		} else if (state.clicked === false && state.countries[0]) {
 			return (
 				<div className="chart">
 					<VictoryChart
@@ -97,7 +98,7 @@ class Topics extends React.Component {
 							}}
 
 							data = {this.state.countriesData}
-
+							
 							events={[
 								{
 									target: "data",
@@ -131,14 +132,12 @@ class Topics extends React.Component {
 					</div>
 					<Sent
 						className="sentGraph"
-						search={this.props.search}
-						country={this.state.bar}
-						flag="topic"
+						search={props.search}
+						country={state.bar}
+						flag="country"
 					></Sent>
 				</Box>
 			);
 		}
-	}
-}
-
-export default Topics;
+    }
+export default CountryFunc;

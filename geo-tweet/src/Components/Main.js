@@ -10,6 +10,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import "../CSS/Drawer.css";
 import MyMap from "./MyMap";
 import SideBar from "./SideBar";
+import { Grid } from "@material-ui/core";
+
 
 export default function Main() {
 	const [search, setSearch] = useState([]);
@@ -44,6 +46,8 @@ export default function Main() {
 		setOpen(false);
 	};
 
+	
+
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
@@ -54,6 +58,11 @@ export default function Main() {
 				})}
 			>
 				<Toolbar>
+					<Grid container
+					direction="row"
+					justify="space-between"
+					alignItems="center">
+						
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -62,10 +71,18 @@ export default function Main() {
 						className={clsx(classes.menuButton, open && classes.hide)}
 					>
 						<MenuIcon />
+
 					</IconButton>
+
 					<Typography variant="h6" noWrap className={clsx(classes.headline)}>
 						Select, Analyse and Explore Geo-Tweets insight
 					</Typography>
+
+					<Typography variant="h6" noWrap className={clsx(classes.headline)}>
+						Search :  {search}
+					</Typography>
+
+					</Grid>
 				</Toolbar>
 			</AppBar>
 			<SideBar
