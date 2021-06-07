@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState , useEffect } from "react";
 import { VictoryBar, VictoryChart } from "victory";
 import Sent from "../Statistics/Sentimental";
 import "../CSS/Drawer.css";
@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Loader from "./../Components/Loader";
 import Box from "@material-ui/core/Box";
-const countries = [];
+const countriesArr = [];
 
 
 const state = {
@@ -24,59 +24,63 @@ const state = {
 const CountryFunc = (props) => {
 
 
+    console.log("CountryFunc ", props);
+
+    const [clickedFlag, setClickedFlag] = useState(false);
+	const [countries, setCountries] = useState([]);
+	const [countriesData, setCountriesData] = useState([]);
+	const [bar, setBar] = useState("");
+	const [isloading, setIsloading] = useState(true);
+
     const clicked = (e) => {
         console.log("hey click", e);
         console.log("bar", e.datum.x);
-        state({ clicked: true });
-        state({
-            bar: e.datum.x,
-        });
+        setClickedFlag(true);
+        setBar(e.datum.x)
 
-        // this.forceUpdate();
     };
 
     const handleChange = (panel) => (event, isExpanded) => {
-        state({ clicked: false });
-        // this.forceUpdate();
+        setClickedFlag(false);
     };
 
     let coData = [];
 
     useEffect(() => {
+        setIsloading(true)
+        console.log("fetch in cpuntryfunc:::::",props.search,isloading)
     const query = async () => {
 		fetch(
 			`https://ancient-retreat-48472.herokuapp.com/api/country?search=${props.search}`
 		)
 			.then((response) => response.json())
 			.then((res) => {
-				state({ countries: res });
-				console.log("country " + state.countries);
-				state.countries.forEach(element => {
+                setCountries(res);
+                countries.forEach(element => {
 					coData.push({x: element[0],
 							y: element[1],},)
 				});
-				console.log("coData " + coData);
-				state({ countriesData: coData });
+                setCountriesData(coData);
+                setIsloading(false);
 
-				state({ isloading: false });
 			});
 
     };
 
     query();
 
-}, []);
+}, [props.search]);
 
 
 
 
-		if (state.isloading) {
+		if (isloading) {
 			return (
 				<Box>
-					<Loader loading={state.isloading} />
+					<Loader loading={isloading} />
 				</Box>
 			);
-		} else if (state.clicked === false && state.countries[0]) {
+		} else if (clickedFlag === false && countries[0]) {
 			return (
 				<div className="chart">
 					<VictoryChart
@@ -94,10 +98,10 @@ const CountryFunc = (props) => {
 								},
 							}}
 							categories={{
-								x: countries,
+								x: countriesArr,
 							}}
 
-							data = {this.state.countriesData}
+							data = {countriesData}
 							
 							events={[
 								{
@@ -133,7 +137,7 @@ const CountryFunc = (props) => {
 					<Sent
 						className="sentGraph"
 						search={props.search}
-						country={state.bar}
+						country={bar}
 						flag="country"
 					></Sent>
 				</Box>

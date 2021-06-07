@@ -43,6 +43,27 @@ class Country extends React.Component {
 				this.setState({ isloading: false });
 			});
 	}
+	componentDidUpdate(prevProps) {
+		if (prevProps.text !== this.props.text) {
+			let coData = [];
+			fetch(
+				`https://ancient-retreat-48472.herokuapp.com/api/country?search=${this.props.search}`
+			)
+				.then((response) => response.json())
+				.then((res) => {
+					this.setState({ countries: res });
+					console.log("country did" + this.state.countries);
+					this.state.countries.forEach(element => {
+						coData.push({x: element[0],
+								y: element[1],},)
+					});
+					console.log("coData did " + coData);
+					this.setState({ countriesData: coData });
+	
+					this.setState({ isloading: false });
+				});
+		}
+	  }
 
 	render() {
 		const clicked = (e) => {
@@ -86,28 +107,7 @@ class Country extends React.Component {
 							categories={{
 								x: countries,
 							}}
-							// data={[
-							// 	{
-							// 		x: this.state.countries[0][0],
-							// 		y: this.state.countries[0][1],
-							// 	},
-							// 	{
-							// 		x: this.state.countries[1][0],
-							// 		y: this.state.countries[1][1],
-							// 	},
-							// 	{
-							// 		x: this.state.countries[2][0],
-							// 		y: this.state.countries[2][1],
-							// 	},
-							// 	{
-							// 		x: this.state.countries[3][0],
-							// 		y: this.state.countries[3][1],
-							// 	},
-							// 	{
-							// 		x: this.state.countries[4][0],
-							// 		y: this.state.countries[4][1],
-							// 	},
-							// ]}
+
 							data = {this.state.countriesData}
 							
 							events={[

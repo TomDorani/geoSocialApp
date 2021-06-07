@@ -52,7 +52,7 @@ export default function ControlledAccordions(state) {
 				</AccordionSummary>
 				<AccordionDetails>
 					<Box component="span" className="chart" style={{ width: "100%" }}>
-						<Country className="graph" search={state.search}></Country>
+						<CountryFunc className="graph" search={state.search}></CountryFunc>
 					</Box>
 				</AccordionDetails>
 			</Accordion>
