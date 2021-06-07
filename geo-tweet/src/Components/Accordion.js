@@ -9,7 +9,7 @@ import Country from "../Statistics/Country";
 import Topics from "../Statistics/Topics";
 import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
-// import CountryFunc from "./CountryFunc";
+import CountryFunc from "./CountryFunc";
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -50,7 +50,9 @@ export default function ControlledAccordions(state) {
 					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<Country className="graph" search={state.search}></Country>
+					<Box component="span" className="chart" style={{ width: "100%" }}>
+						<CountryFunc className="graph" search={state.search}></CountryFunc>
+					</Box>
 				</AccordionDetails>
 			</Accordion>
 			<Accordion
