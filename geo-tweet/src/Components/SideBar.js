@@ -139,7 +139,7 @@ const SideBar = (props) => {
 			</List>
 			<Divider />
 			<List>
-				<Accordion search={searchText}></Accordion>
+				<Accordion search={props.search}></Accordion>
 				<AboutUs />
 			</List>
 		</Drawer>
