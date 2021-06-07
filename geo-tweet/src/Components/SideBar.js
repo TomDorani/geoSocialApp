@@ -52,7 +52,7 @@ const SideBar = (props) => {
 			console.log("key,words:", words);
 			props.setSearch(words);
 		}
-		setSearchText("");
+		// setSearchText("");
 	};
 
 	return (
@@ -139,7 +139,7 @@ const SideBar = (props) => {
 			</List>
 			<Divider />
 			<List>
-				<Accordion search={props.search}></Accordion>
+				<Accordion search={searchText}></Accordion>
 				<AboutUs />
 			</List>
 		</Drawer>
