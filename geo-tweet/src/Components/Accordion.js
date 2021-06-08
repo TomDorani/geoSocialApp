@@ -9,7 +9,7 @@ import Country from "../Statistics/Country";
 import Topics from "../Statistics/Topics";
 import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
-import CountryFunc from "./CountryFunc";
+import CountryFunc from "../Statistics/CountryFunc";
 import TopicFunc from "../Statistics/TopicFunc";
 
 
