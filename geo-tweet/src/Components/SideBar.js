@@ -118,7 +118,7 @@ const SideBar = (props) => {
 							</Button>
 						</Box>
 					</Grid>
-					<Grid item justify="center" alignItems="center">
+					<Grid item>
 						<FormControlLabel
 							className="heatMapSwitch"
 							control={
@@ -143,10 +143,10 @@ const SideBar = (props) => {
 					</Grid>
 
 					<Divider />
-					<Grid item p={6} justify="center">
+					<Grid item p={6}>
 						<Accordion search={props.search}></Accordion>
 					</Grid>
-					<Grid item p={6} justify="center">
+					<Grid item p={6}>
 						<AboutUs />
 					</Grid>
 				</Grid>

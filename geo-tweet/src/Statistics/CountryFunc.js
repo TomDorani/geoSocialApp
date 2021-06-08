@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { VictoryBar, VictoryChart } from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 import Sent from "../Statistics/Sentimental";
 import "../CSS/Drawer.css";
 import IconButton from "@material-ui/core/IconButton";
@@ -61,17 +61,27 @@ const CountryFunc = (props) => {
 			<div className="chart">
 				<VictoryChart
 					domainPadding={30}
-					padding={{ left: 80, right: 100, bottom: 50, top: 20 }}
+					style={{ tickLabels: { fontSize: 25, padding: 5 } }}
+					padding={{ left: 80, right: 80, bottom: 50, top: 20 }}
 					height={385}
 					width={650}
 				>
+					<VictoryAxis
+						style={{
+							grid: { stroke: "grey" },
+							tickLabels: { fontSize: 16, padding: 3 },
+						}}
+						standalone={false}
+					/>
+					<VictoryAxis dependentAxis />
 					<VictoryBar
 						cornerRadius={{ topLeft: 10 }}
 						style={{
 							data: {
 								fill: "#1da1f2",
-								width: 25,
+								width: 35,
 							},
+							fontSize: 55,
 						}}
 						data={countriesData}
 						events={[
