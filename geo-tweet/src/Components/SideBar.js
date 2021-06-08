@@ -34,6 +34,14 @@ const SideBar = (props) => {
 		headline: {
 			alignSelf: "center",
 		},
+		drawerHead: {
+			backgroundColor: theme.palette.primary.main,
+			color: "#ffff",
+			display: "inline-flex",
+			maxHeight: "64px",
+			alignItems: "center",
+			/* width:min-content; */
+		},
 	}));
 	const classes = useStyles();
 
@@ -61,7 +69,7 @@ const SideBar = (props) => {
 				paper: classes.paper,
 			}}
 		>
-			<div className="DrawerHeader">
+			<div className={classes.drawerHead}>
 				<Typography
 					variant="h6"
 					noWrap

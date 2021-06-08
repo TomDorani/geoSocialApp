@@ -33,15 +33,6 @@
 	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
 
-.DrawerHeader {
-	background-color: #3f51b5;
-	color: #fff;
-	display: inline-flex;
-	max-height: 64px;
-	align-items: center;
-	/* width:min-content; */
-}
-
 .DrawerButton {
 	color: #fff;
 	padding-left: 23%;
