@@ -33,15 +33,13 @@
 	box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
 
-.DrawerHeader{
-
+.DrawerHeader {
 	background-color: #3f51b5;
 	color: #fff;
 	display: inline-flex;
 	max-height: 64px;
-    align-items: center;
+	align-items: center;
 	/* width:min-content; */
-
 }
 
 .DrawerButton {
@@ -54,14 +52,13 @@
 	
 } */
 
-
-.MoodIcon{
+.MoodIcon {
 	padding-left: 10px;
 	font-size: xx-large;
 }
 
-.CountryModal{
-margin-left: 10%;
+.CountryModal {
+	margin-left: 10%;
 }
 
 /* .chart {
@@ -71,40 +68,30 @@ margin-left: 10%;
 
 } */
 
-#simple-modal-title{
+#simple-modal-title {
 	text-align: center;
 }
 
-#TopicModal{
-
+#TopicModal {
 	margin-left: 10%;
-
 }
 
-#contactUsModal{
-
+#contactUsModal {
 	margin-left: 10%;
-
 }
 
-.graph{
+.graph {
 	margin-right: 80%;
 }
 
-.sentLegend{
+.sentLegend {
 	margin-left: 5%;
 }
 
-.sentIcon{
+.sentIcon {
 	margin-left: 2%;
 }
 
-.sntBtn{
+.sntBtn {
 	padding-left: 91%;
 }
-
-.heatMapSwitch{
-
-	padding-top: 20%;
-}
-

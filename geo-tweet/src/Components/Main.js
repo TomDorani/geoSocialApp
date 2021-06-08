@@ -29,6 +29,7 @@ export default function Main() {
 		},
 		headline: {
 			alignSelf: "center",
+			padding: "28px",
 		},
 	}));
 
@@ -75,8 +76,13 @@ export default function Main() {
 							Select, Analyse and Explore Geo-Tweets insight
 						</Typography>
 
-						<Typography variant="h6" noWrap className={clsx(classes.headline)}>
-							Search : {search}
+						<Typography
+							variant="h6"
+							r={-6}
+							noWrap
+							className={clsx(classes.headline)}
+						>
+							Your Search : {search}
 						</Typography>
 					</Grid>
 				</Toolbar>

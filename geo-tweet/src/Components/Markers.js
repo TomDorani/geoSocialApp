@@ -92,7 +92,7 @@ const filterTweets = (tweets, search, sentifilter) => {
 	//console.log("filtring", sentifilter);
 
 	var filteredTweets = [];
-	console.log("filterTweets" + search.length);
+	//console.log("filterTweets" + search.length);
 	if (search.length === 0) {
 		filteredTweets = tweets;
 	} else {

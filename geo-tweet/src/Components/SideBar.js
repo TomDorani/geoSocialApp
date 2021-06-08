@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
+
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,7 +10,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import FormGroup from "@material-ui/core/FormGroup";
+
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import "../CSS/Drawer.css";
@@ -18,6 +18,7 @@ import Button from "@material-ui/core/Button";
 import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
 import AboutUs from "./AboutUs";
+import Box from "@material-ui/core/Box";
 
 const SideBar = (props) => {
 	//console.log("sidebar props", props);
@@ -27,12 +28,8 @@ const SideBar = (props) => {
 
 	const useStyles = makeStyles((theme) => ({
 		paper: {
-			position: "absolute",
-			width: 1100,
-			backgroundColor: theme.palette.background.paper,
-			border: "2px solid #000",
+			backgroundColor: "rgba(233, 228, 236,90)",
 			boxShadow: theme.shadows[5],
-			padding: theme.spacing(3, 4, 3),
 		},
 		headline: {
 			alignSelf: "center",
@@ -61,7 +58,7 @@ const SideBar = (props) => {
 			anchor="left"
 			open={props.open}
 			classes={{
-				paper: classes.drawerPaper,
+				paper: classes.paper,
 			}}
 		>
 			<div className="DrawerHeader">
@@ -84,22 +81,31 @@ const SideBar = (props) => {
 				</div>
 			</div>
 			<Divider />
-			<List>
-				<Container maxWidth="sm">
+			<Container maxWidth="sm">
+				<Grid
+					className="layer"
+					container
+					direction="column"
+					justify="space-around"
+					alignItems="center"
+					spacing={2}
+				>
 					<Grid
-						className="layer"
 						container
-						direction="column"
+						direction="row"
 						justify="center"
-						alignItems="flex-start"
+						alignItems="center"
+						spacing={3}
 					>
-						<Grid>
+						<Box component="span" m={4} xs={3}>
 							<TextField
 								id="standard-basic"
 								label="KeyWords"
 								value={searchText}
 								onChange={searchChange}
 							/>
+						</Box>
+						<Box component="span" m={4} xs={3}>
 							<Button
 								className="searchbtn"
 								variant="contained"
@@ -110,39 +116,41 @@ const SideBar = (props) => {
 							>
 								Search
 							</Button>
-						</Grid>
-						<FormGroup className="switch">
-							<FormControlLabel
-								className="heatMapSwitch"
-								control={
-									<Switch
-										checked={props.heatMap}
-										onChange={props.heatMapChange}
-										name="heatMap"
-										color="primary"
-									/>
-								}
-								label="Heatmap Layer"
-							/>
-							<FormControlLabel
-								className="SentiSwitch"
-								control={
-									<SentiFilter
-										senti={props.senti}
-										sentiChange={props.setSenti}
-									/>
-								}
-								// label="Heatmap Layer"
-							/>
-						</FormGroup>
+						</Box>
 					</Grid>
-				</Container>
-			</List>
-			<Divider />
-			<List>
-				<Accordion search={props.search}></Accordion>
-				<AboutUs />
-			</List>
+					<Grid item justify="center" alignItems="center">
+						<FormControlLabel
+							className="heatMapSwitch"
+							control={
+								<Switch
+									checked={props.heatMap}
+									onChange={props.heatMapChange}
+									name="heatMap"
+									color="primary"
+								/>
+							}
+							label="Heatmap Layer"
+						/>
+					</Grid>
+					<Grid item>
+						<FormControlLabel
+							className="SentiSwitch"
+							control={
+								<SentiFilter senti={props.senti} sentiChange={props.setSenti} />
+							}
+							// label="Heatmap Layer"
+						/>
+					</Grid>
+
+					<Divider />
+					<Grid item p={6} justify="center">
+						<Accordion search={props.search}></Accordion>
+					</Grid>
+					<Grid item p={6} justify="center">
+						<AboutUs />
+					</Grid>
+				</Grid>
+			</Container>
 		</Drawer>
 	);
 };
