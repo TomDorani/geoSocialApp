@@ -10,6 +10,8 @@ import Topics from "../Statistics/Topics";
 import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
 import CountryFunc from "./CountryFunc";
+import TopicFunc from "../Statistics/TopicFunc";
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -64,11 +66,11 @@ export default function ControlledAccordions(state) {
 					aria-controls="panel2bh-content"
 					id="panel2bh-header"
 				>
-					<Typography className={classes.heading}>Topic Statistics</Typography>
+					<Typography className={classes.heading}>{"Topic Statistics: " + state.search}</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
 					<Box component="span" className="chart" style={{ width: "100%" }}>
-						<Topics className="graph" search={state.search}></Topics>
+						<TopicFunc className="graph" search={state.search}></TopicFunc>
 					</Box>
 				</AccordionDetails>
 			</Accordion>

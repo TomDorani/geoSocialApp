@@ -1,73 +1,70 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { VictoryBar, VictoryChart } from "victory";
-import Sent from "./Sentimental";
+import Sent from "../Statistics/Sentimental";
 import "../CSS/Drawer.css";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Loader from "../Components/Loader";
+import Loader from "./../Components/Loader";
 import Box from "@material-ui/core/Box";
-const countries = [];
-
-const state = {
-	clicked: false,
-	countries: [],
-	countriesData: [],
-	bar: "",
-	style: {
-		data: { fill: "tomato" },
-	},
-	isloading: true,
-};
 
 const CountryFunc = (props) => {
+	console.log("CountryFunc search", props.search.toString());
+
+	const [clickedFlag, setClickedFlag] = useState(false);
+
+	const [countriesData, setCountriesData] = useState([]);
+	const [bar, setBar] = useState("");
+	const [isloading, setIsloading] = useState(true);
+
+	const topic = {
+		0: "opinions",
+		1: "casual",
+		2: "greeting",
+		3: "jobs",
+		4: "meta tweets",
+	};
+
 	const clicked = (e) => {
 		console.log("hey click", e);
 		console.log("bar", e.datum.x);
-		state({ clicked: true });
-		state({
-			bar: e.datum.x,
-		});
-
-		// this.forceUpdate();
+		setClickedFlag(true);
+		setBar(e.datum.x);
 	};
 
 	const handleChange = (panel) => (event, isExpanded) => {
-		state({ clicked: false });
-		// this.forceUpdate();
+		setClickedFlag(false);
 	};
 
-	let coData = [];
-
 	useEffect(() => {
-		const query = async () => {
-			fetch(
-				`https://ancient-retreat-48472.herokuapp.com/api/country?search=${props.search}`
-			)
-				.then((response) => response.json())
-				.then((res) => {
-					state({ countries: res });
-					console.log("country " + state.countries);
-					state.countries.forEach((element) => {
-						coData.push({ x: element[0], y: element[1] });
-					});
-					console.log("coData " + coData);
-					state({ countriesData: coData });
+		setIsloading(true);
+		let coData = [];
 
-					state({ isloading: false });
-				});
+		console.log("fetch in cpuntryfunc:::::", props.search, isloading);
+		const query = async () => {
+			const res = await fetch(
+				`https://ancient-retreat-48472.herokuapp.com/api/topic?search=${props.search.toString()}`
+			);
+			const data = await res.json();
+			console.log("fetched data countries", data);
+			data.forEach((element) => {
+				coData.push({ x: topic[element[0]], y: element[1] });
+			});
+			console.log("codata:", coData);
+			setCountriesData(coData);
 		};
 
 		query();
+		setIsloading(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.search]);
 
-	if (state.isloading) {
+	if (isloading) {
 		return (
 			<Box>
-				<Loader loading={state.isloading} />
+				<Loader loading={isloading} />
 			</Box>
 		);
-	} else if (state.clicked === false && state.countries[0]) {
+	} else if (clickedFlag === false && countriesData[0]) {
 		return (
 			<div className="chart">
 				<VictoryChart
@@ -84,10 +81,7 @@ const CountryFunc = (props) => {
 								width: 25,
 							},
 						}}
-						categories={{
-							x: countries,
-						}}
-						data={this.state.countriesData}
+						data={countriesData}
 						events={[
 							{
 								target: "data",
@@ -122,8 +116,8 @@ const CountryFunc = (props) => {
 				<Sent
 					className="sentGraph"
 					search={props.search}
-					country={state.bar}
-					flag="country"
+					country={bar}
+					flag="topic"
 				></Sent>
 			</Box>
 		);
