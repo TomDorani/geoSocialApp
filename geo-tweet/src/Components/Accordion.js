@@ -9,6 +9,9 @@ import Country from "../Statistics/Country";
 import Topics from "../Statistics/Topics";
 import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
+import CountryFunc from "../Statistics/CountryFunc";
+import TopicFunc from "../Statistics/TopicFunc";
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -24,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledAccordions(state) {
+	console.log("accordion ", state.search);
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
 	// console.log("accor state" + state.search);
@@ -44,12 +48,12 @@ export default function ControlledAccordions(state) {
 					id="panel1bh-header"
 				>
 					<Typography className={classes.heading}>
-						Country Statistics
+						{"Country Statistics: " + state.search}
 					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
 					<Box component="span" className="chart" style={{ width: "100%" }}>
-						<Country className="graph" search={state.search}></Country>
+						<CountryFunc className="graph" search={state.search}></CountryFunc>
 					</Box>
 				</AccordionDetails>
 			</Accordion>
@@ -62,13 +66,12 @@ export default function ControlledAccordions(state) {
 					aria-controls="panel2bh-content"
 					id="panel2bh-header"
 				>
-					<Typography className={classes.heading}>Topic Statistics</Typography>
-					{/* <Typography className={classes.secondaryHeading}>
-            You are currently not an owner
-          </Typography> */}
+					<Typography className={classes.heading}>{"Topic Statistics: " + state.search}</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					{/* <Topics search={state.search}></Topics> */}
+					<Box component="span" className="chart" style={{ width: "100%" }}>
+						<TopicFunc className="graph" search={state.search}></TopicFunc>
+					</Box>
 				</AccordionDetails>
 			</Accordion>
 		</div>

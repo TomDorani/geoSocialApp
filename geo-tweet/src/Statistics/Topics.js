@@ -23,6 +23,7 @@ class Topics extends React.Component {
 		this.state = {
 			clicked: false,
 			countries: [],
+			countriesData: [],
 			bar: "",
 			style: {
 				data: { fill: "tomato" },
@@ -32,12 +33,21 @@ class Topics extends React.Component {
 	}
 
 	componentDidMount() {
+		let coData = [];
 		fetch(
 			`https://ancient-retreat-48472.herokuapp.com/api/topic?search=${this.props.search}`
 		)
 			.then((response) => response.json())
 			.then((res) => {
 				this.setState({ countries: res });
+				console.log("country " + this.state.countries);
+				this.state.countries.forEach(element => {
+					coData.push({x: topic[element[0]],
+							y: element[1],},)
+				});
+				console.log("coData " + coData);
+				this.setState({ countriesData: coData });
+
 				this.setState({ isloading: false });
 			});
 	}
@@ -71,9 +81,8 @@ class Topics extends React.Component {
 					<VictoryChart
 						domainPadding={30}
 						padding={{ left: 80, right: 100, bottom: 50, top: 20 }}
-						height={485}
+						height={385}
 						width={650}
-						fontSize={30}
 					>
 						<VictoryBar
 							cornerRadius={{ topLeft: 10 }}
@@ -86,28 +95,9 @@ class Topics extends React.Component {
 							categories={{
 								x: countries,
 							}}
-							data={[
-								{
-									x: topic[this.state.countries[0][0]],
-									y: this.state.countries[0][1],
-								},
-								{
-									x: topic[this.state.countries[1][0]],
-									y: this.state.countries[1][1],
-								},
-								{
-									x: topic[this.state.countries[2][0]],
-									y: this.state.countries[2][1],
-								},
-								{
-									x: topic[this.state.countries[3][0]],
-									y: this.state.countries[3][1],
-								},
-								{
-									x: topic[this.state.countries[4][0]],
-									y: this.state.countries[4][1],
-								},
-							]}
+
+							data = {this.state.countriesData}
+
 							events={[
 								{
 									target: "data",

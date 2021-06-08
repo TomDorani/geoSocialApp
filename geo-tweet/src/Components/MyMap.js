@@ -2,22 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import Markers from "./Markers";
 import Loader from "./Loader";
-// import TweetAlert from "./TweetAlert";
+import TweetAlert from "./TweetAlert";
 import Legend from "./Legend";
 
-
-const TestMap = (state) => {
+const MyMap = (state) => {
 	const [zoom, setZoom] = useState(3);
 	const [isload, setIsLoad] = useState(true);
 	const [tweets, setTweets] = useState([]);
 	const [hight, setHight] = useState(window.innerHeight);
 	const [width, setWitdh] = useState(window.innerWidth);
-	// const [showAlert, setShowAlert] = useState(false);
-	// const [alertData, setAlertData] = useState({});
+	const [showAlert, setShowAlert] = useState(false);
+	const [alertData, setAlertData] = useState("");
 
 	const handleClick = (e) => {
-		console.log("object", state.setOpen);
-		state.setOpen = true;
+		console.log("object", showAlert);
+		setShowAlert(true);
+	};
+	const handleClose = (e) => {
+		setShowAlert(false);
 	};
 
 	useEffect(() => {
@@ -56,7 +58,7 @@ const TestMap = (state) => {
 	} else {
 		return (
 			<>
-				{/* <TweetAlert open={showAlert} data={alertData} /> */}
+				<TweetAlert open={showAlert} data={alertData} close={handleClose} />
 				<div
 					id="mapdiv"
 					style={{
@@ -94,7 +96,7 @@ const TestMap = (state) => {
 							zoom={zoom}
 							heatMap={state.heatMap}
 							setOpen={handleClick}
-							// setData={setAlertData}
+							setData={setAlertData}
 						></Markers>
 					</Map>
 				</div>
@@ -102,4 +104,4 @@ const TestMap = (state) => {
 		);
 	}
 };
-export default TestMap;
+export default React.memo(MyMap);
