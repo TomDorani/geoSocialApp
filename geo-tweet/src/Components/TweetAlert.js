@@ -26,7 +26,7 @@ export default function TweetAlert(props) {
 		if (reason === "clickaway") {
 			return;
 		}
-		console.log(props.close);
+		//console.log(props.close);
 		props.close();
 		// setOpen(false);
 	};

@@ -10,13 +10,13 @@ class Sent extends React.Component {
 	};
 
 	componentDidMount() {
-		console.log("mount");
+		//console.log("mount");
 		fetch(
 			`https://ancient-retreat-48472.herokuapp.com/api/${this.props.flag}/senti?search=${this.props.search}&${this.props.flag}=${this.props.country}`
 		)
 			.then((response) => response.json())
 			.then((res) => {
-				console.log("res in sent", res);
+				//console.log("res in sent", res);
 				this.setState({ sent: res });
 				this.setState({ isloading: false });
 			});
@@ -30,7 +30,7 @@ class Sent extends React.Component {
 			3: "jobs",
 			4: "meta tweets",
 		};
-		console.log(this.state.sent);
+		//console.log(this.state.sent);
 
 		const values = [];
 		values.push(this.state.sent["POSITIVE"]);
@@ -45,8 +45,8 @@ class Sent extends React.Component {
 		pre[2] = Math.round((values[2] / sum) * 100);
 		pre[3] = 100 - pre[0] - pre[1] - pre[2];
 
-		console.log("search in sent " + this.props.search);
-		console.log("country in sent " + this.props.country);
+		//console.log("search in sent " + this.props.search);
+		//console.log("country in sent " + this.props.country);
 
 		if (this.state.isloading) {
 			return (
@@ -109,7 +109,7 @@ class Sent extends React.Component {
 					</svg>
 					<svg viewBox="0 0 500 200">
 						<VictoryPie
-							colorScale={["#53c653", "#e0544a", "#d6d6c2", "#ffff66"]}
+							colorScale={["#53c653", "#e0544a", "#3fb0cf", "#ffff66"]}
 							standalone={false}
 							width={400}
 							height={200}

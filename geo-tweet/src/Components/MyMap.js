@@ -15,7 +15,7 @@ const MyMap = (state) => {
 	const [alertData, setAlertData] = useState("");
 
 	const handleClick = (e) => {
-		console.log("object", showAlert);
+		//console.log("object", showAlert);
 		setShowAlert(true);
 	};
 	const handleClose = (e) => {
@@ -28,7 +28,7 @@ const MyMap = (state) => {
 			let newidth = window.innerWidth;
 			setHight(newHeight);
 			setWitdh(newidth);
-			console.log("updating size");
+			//console.log("updating size");
 		};
 
 		window.addEventListener("resize", updateWindowDimensions);
@@ -40,7 +40,7 @@ const MyMap = (state) => {
 		const bringTweets = async () => {
 			const res = await fetch(`https://ancient-retreat-48472.herokuapp.com/`);
 			const data = await res.json();
-			console.log("data fetched from server");
+			//console.log("data fetched from server");
 
 			setTweets(data);
 			setIsLoad(false);

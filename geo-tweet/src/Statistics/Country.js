@@ -36,18 +36,18 @@ class Country extends React.Component {
 
 	componentDidMount() {
 		let coData = [];
-		console.log("fetch country");
+		//console.log("fetch country");
 		fetch(
 			`https://ancient-retreat-48472.herokuapp.com/api/country?search=${this.props.search}`
 		)
 			.then((response) => response.json())
 			.then((res) => {
 				this.setState({ countries: res });
-				console.log("country " + this.state.countries);
+				//console.log("country " + this.state.countries);
 				this.state.countries.forEach((element) => {
 					coData.push({ x: element[0], y: element[1] });
 				});
-				console.log("coData " + coData);
+				//console.log("coData " + coData);
 				this.setState({ countriesData: coData });
 
 				this.setState({ isloading: false });
@@ -62,11 +62,11 @@ class Country extends React.Component {
 				.then((response) => response.json())
 				.then((res) => {
 					this.setState({ countries: res });
-					console.log("country did" + this.state.countries);
+					//console.log("country did" + this.state.countries);
 					this.state.countries.forEach((element) => {
 						coData.push({ x: element[0], y: element[1] });
 					});
-					console.log("coData did " + coData);
+					//console.log("coData did " + coData);
 					this.setState({ countriesData: coData });
 
 					this.setState({ isloading: false });
@@ -76,8 +76,8 @@ class Country extends React.Component {
 
 	render() {
 		const clicked = (e) => {
-			console.log("hey click", e);
-			console.log("bar", e.datum.x);
+			//console.log("hey click", e);
+			//console.log("bar", e.datum.x);
 			this.setState({ clicked: true });
 			this.setState({
 				bar: e.datum.x,

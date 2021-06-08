@@ -8,7 +8,7 @@ import Loader from "./../Components/Loader";
 import Box from "@material-ui/core/Box";
 
 const CountryFunc = (props) => {
-	console.log("CountryFunc search", props.search.toString());
+	//console.log("CountryFunc search", props.search.toString());
 
 	const [clickedFlag, setClickedFlag] = useState(false);
 
@@ -25,8 +25,8 @@ const CountryFunc = (props) => {
 	};
 
 	const clicked = (e) => {
-		console.log("hey click", e);
-		console.log("bar", e.datum.x);
+		//console.log("hey click", e);
+		//console.log("bar", e.datum.x);
 		setClickedFlag(true);
 		setBar(e.datum.x);
 	};
@@ -39,17 +39,17 @@ const CountryFunc = (props) => {
 		setIsloading(true);
 		let coData = [];
 
-		console.log("fetch in cpuntryfunc:::::", props.search, isloading);
+		//console.log("fetch in cpuntryfunc:::::", props.search, isloading);
 		const query = async () => {
 			const res = await fetch(
 				`https://ancient-retreat-48472.herokuapp.com/api/topic?search=${props.search.toString()}`
 			);
 			const data = await res.json();
-			console.log("fetched data countries", data);
+			//console.log("fetched data countries", data);
 			data.forEach((element) => {
 				coData.push({ x: topic[element[0]], y: element[1] });
 			});
-			console.log("codata:", coData);
+			//console.log("codata:", coData);
 			setCountriesData(coData);
 		};
 

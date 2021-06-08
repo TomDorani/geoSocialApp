@@ -40,12 +40,11 @@ class Topics extends React.Component {
 			.then((response) => response.json())
 			.then((res) => {
 				this.setState({ countries: res });
-				console.log("country " + this.state.countries);
-				this.state.countries.forEach(element => {
-					coData.push({x: topic[element[0]],
-							y: element[1],},)
+				//console.log("country " + this.state.countries);
+				this.state.countries.forEach((element) => {
+					coData.push({ x: topic[element[0]], y: element[1] });
 				});
-				console.log("coData " + coData);
+				//console.log("coData " + coData);
 				this.setState({ countriesData: coData });
 
 				this.setState({ isloading: false });
@@ -55,8 +54,8 @@ class Topics extends React.Component {
 	render() {
 		const clicked = (e) => {
 			let res = Object.values(topic).indexOf(e.datum.x);
-			console.log("hey click", e);
-			console.log("bar", res);
+			//console.log("hey click", e);
+			//console.log("bar", res);
 			this.setState({ clicked: true });
 			this.setState({
 				bar: res,
@@ -95,9 +94,7 @@ class Topics extends React.Component {
 							categories={{
 								x: countries,
 							}}
-
-							data = {this.state.countriesData}
-
+							data={this.state.countriesData}
 							events={[
 								{
 									target: "data",

@@ -5,13 +5,10 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Country from "../Statistics/Country";
-import Topics from "../Statistics/Topics";
 import Box from "@material-ui/core/Box";
 import "../CSS/Drawer.css";
 import CountryFunc from "../Statistics/CountryFunc";
 import TopicFunc from "../Statistics/TopicFunc";
-
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -27,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledAccordions(state) {
-	console.log("accordion ", state.search);
+	//console.log("accordion ", state.search);
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
 	// console.log("accor state" + state.search);
@@ -66,7 +63,9 @@ export default function ControlledAccordions(state) {
 					aria-controls="panel2bh-content"
 					id="panel2bh-header"
 				>
-					<Typography className={classes.heading}>{"Topic Statistics: " + state.search}</Typography>
+					<Typography className={classes.heading}>
+						{"Topic Statistics: " + state.search}
+					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
 					<Box component="span" className="chart" style={{ width: "100%" }}>

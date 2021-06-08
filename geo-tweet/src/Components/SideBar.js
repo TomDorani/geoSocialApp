@@ -20,7 +20,7 @@ import SentiFilter from "./sentifilter";
 import AboutUs from "./AboutUs";
 
 const SideBar = (props) => {
-	console.log("sidebar props", props);
+	//console.log("sidebar props", props);
 	const [searchText, setSearchText] = useState("");
 
 	const theme = useTheme();
@@ -49,7 +49,7 @@ const SideBar = (props) => {
 			props.setSearch([]);
 		} else {
 			let words = searchText.split(" ");
-			console.log("key,words:", words);
+			//console.log("key,words:", words);
 			props.setSearch(words);
 		}
 		setSearchText("");

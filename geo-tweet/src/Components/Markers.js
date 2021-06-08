@@ -10,6 +10,13 @@ const colorSentiMap = {
 	NEUTRAL: "#3fb0cf",
 	POSITIVE: "#53c653",
 };
+const topic = {
+	0: "opinions",
+	1: "casual",
+	2: "greeting",
+	3: "jobs",
+	4: "meta tweets",
+};
 
 const iconByZoom = (zoom, senti) => {
 	let color = colorSentiMap[senti];
@@ -54,7 +61,7 @@ const itemIDPick = (zoom, senti) => {
 };
 
 const alertCreator = (item) => {
-	console.log("item", item);
+	//console.log("item", item);
 	let str =
 		"Author: " +
 		item.author +
@@ -69,7 +76,7 @@ const alertCreator = (item) => {
 		item.timestamp +
 		"%%!!%%" +
 		"Topic: " +
-		item.topic;
+		topic[item.topic];
 	return str;
 };
 
