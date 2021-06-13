@@ -67,6 +67,14 @@ const CountryFunc = (props) => {
 	} else if (clickedFlag === false && countriesData[0]) {
 		return (
 			<div className="chart">
+				<svg className="gard">
+					<defs>
+						<linearGradient id="myGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+							<stop offset="0%" stopColor="#FDD678" />
+							<stop offset="100%" stopColor="#FE6A9D" />
+						</linearGradient>
+					</defs>
+				</svg>
 				<VictoryChart
 					domainPadding={30}
 					padding={{ left: 80, right: 100, bottom: 50, top: 20 }}
@@ -76,7 +84,7 @@ const CountryFunc = (props) => {
 				>
 					<VictoryAxis
 						style={{
-							grid: { stroke: "grey" },
+							// grid: { stroke: "grey" },
 							tickLabels: { fontSize: 16, padding: 3 },
 						}}
 						standalone={false}
@@ -86,7 +94,7 @@ const CountryFunc = (props) => {
 						cornerRadius={{ topLeft: 10 }}
 						style={{
 							data: {
-								fill: "#1da1f2",
+								fill: "url(#myGradient)",
 								width: 40,
 								fontSize: "55px",
 							},

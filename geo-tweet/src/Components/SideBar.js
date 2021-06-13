@@ -38,7 +38,7 @@ const SideBar = (props) => {
 			backgroundColor: theme.palette.primary.main,
 			color: "#ffff",
 			display: "inline-flex",
-			maxHeight: "64px",
+			height: "88px",
 			alignItems: "center",
 			/* width:min-content; */
 		},
