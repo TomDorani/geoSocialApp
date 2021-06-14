@@ -8,6 +8,14 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import page from "../Icons/page.png";
+import filters from "../Icons/Filters.png";
+import stat from "../Icons/stat.jpg";
+import Grid from "@material-ui/core/Grid";
+import "../CSS/Drawer.css";
+
+
+
 
 const styles = (theme) => ({
 	root: {
@@ -72,32 +80,81 @@ export default function AboutUs() {
 				onClose={handleClose}
 				aria-labelledby="customized-dialog-title"
 				open={open}
+				maxWidth = "md"
 			>
-				<DialogTitle id="customized-dialog-title" onClose={handleClose}>
-					About Us
+				<DialogTitle align = "center" id="customized-dialog-title" onClose={handleClose}>
+					Geo-Tweet
 				</DialogTitle>
 				<DialogContent dividers>
-					<Typography gutterBottom>
-						Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-						dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-						ac consectetur ac, vestibulum at eros.
+
+					<Typography gutterBottom align = "center" >
+					Geo-Tweet is a tool that illustrates the capabilities of gathering and analyzing information while focusing on geographical location
 					</Typography>
+					<Grid
+					className="ASbody"
+					container
+					direction="row"
+					justify="space-around"
+					alignItems="center"
+					// spacing={2}
+					>
+						<Grid
+							xs={6} sm={3}
+							className="layer"
+							container
+							direction="column"
+							justify="space-around"
+							spacing={15}
+						>
+					<img src={page} className = "iconAU" />
 					<Typography gutterBottom>
-						Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-						Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-						auctor.
+						This page displays geolocalized tweets delivered by public twitter stream API.
 					</Typography>
+					</Grid>
+					<Grid
+							xs={6} sm={3}
+							className="layer"
+							container
+							direction="column"
+							justify="space-around"
+							spacing={15}
+						>
+					<img src={stat} className = "iconAU" />
 					<Typography gutterBottom>
-						Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-						cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-						dui. Donec ullamcorper nulla non metus auctor fringilla.
+						Take advantage of the variety of statistics for your purposes.
 					</Typography>
+					</Grid>
+					<Grid
+							xs={6} sm={3}
+							className="layer"
+							container
+							direction="column"
+							justify="space-around"
+							spacing={15}
+						>
+					<img  src={filters} className = "iconAU" />
+					<Typography gutterBottom>
+						Play with filters and check the nice heatmap rendering!
+					</Typography>
+					</Grid>
+					</Grid>
+					<Typography gutterBottom align = "center" >
+						We hope you enjoy and benefit using the tool!
+						Thanks for the support.
+					</Typography>
+		
+					<Typography gutterBottom align = "center" >
+						Big thanks to Dr. Eli Yitzhak for the continued support.
+					</Typography>
+					<div align = "center">
+					<a   href = "https://github.com/TomDorani/geoSocialApp">https://github.com/geoSocialApp</a>
+					</div>
 				</DialogContent>
-				<DialogActions>
+				{/* <DialogActions>
 					<Button autoFocus onClick={handleClose} color="primary">
 						close
 					</Button>
-				</DialogActions>
+				</DialogActions> */}
 			</Dialog>
 		</div>
 	);

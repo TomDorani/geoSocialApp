@@ -21,7 +21,7 @@ function Loader() {
 				<Typography>Fetching Data and Analysing</Typography>
 				<Divider />
 				<PropagateLoader
-					color={"#0077c2"}
+					color={"#7D71E5"}
 					loading={loading}
 					css={override}
 					size={25}
