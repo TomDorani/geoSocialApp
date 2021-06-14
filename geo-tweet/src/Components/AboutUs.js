@@ -14,9 +14,6 @@ import stat from "../Icons/stat.jpg";
 import Grid from "@material-ui/core/Grid";
 import "../CSS/Drawer.css";
 
-
-
-
 const styles = (theme) => ({
 	root: {
 		margin: 0,
@@ -54,13 +51,6 @@ const DialogContent = withStyles((theme) => ({
 	},
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
-	root: {
-		margin: 0,
-		padding: theme.spacing(1),
-	},
-}))(MuiDialogActions);
-
 export default function AboutUs() {
 	const [open, setOpen] = React.useState(false);
 
@@ -80,74 +70,81 @@ export default function AboutUs() {
 				onClose={handleClose}
 				aria-labelledby="customized-dialog-title"
 				open={open}
-				maxWidth = "md"
+				maxWidth="md"
 			>
-				<DialogTitle align = "center" id="customized-dialog-title" onClose={handleClose}>
-					Geo-Tweet
+				<DialogTitle
+					align="center"
+					id="customized-dialog-title"
+					onClose={handleClose}
+				>
+					Select, Analyse and Explore Geo-Tweets insight
 				</DialogTitle>
 				<DialogContent dividers>
-
-					<Typography gutterBottom align = "center" >
-					Geo-Tweet is a tool that illustrates the capabilities of gathering and analyzing information while focusing on geographical location
+					<Typography gutterBottom align="center">
+						Geo-Tweet is a tool that illustrates the capabilities of gathering
+						and analyzing information while focusing on geographical location
 					</Typography>
 					<Grid
-					className="ASbody"
-					container
-					direction="row"
-					justify="space-around"
-					alignItems="center"
-					// spacing={2}
+						className="ASbody"
+						container
+						direction="row"
+						justify="space-around"
+						alignItems="flex-start"
+						// spacing={2}
 					>
 						<Grid
-							xs={6} sm={3}
+							sm={3}
 							className="layer"
 							container
 							direction="column"
 							justify="space-around"
 							spacing={15}
 						>
-					<img src={page} className = "iconAU" />
-					<Typography gutterBottom>
-						This page displays geolocalized tweets delivered by public twitter stream API.
-					</Typography>
-					</Grid>
-					<Grid
-							xs={6} sm={3}
+							<img alt="page" src={page} className="iconAU" />
+							<Typography gutterBottom>
+								This page displays geolocalized tweets delivered by public
+								twitter stream API.
+							</Typography>
+						</Grid>
+						<Grid
+							sm={3}
 							className="layer"
 							container
 							direction="column"
 							justify="space-around"
 							spacing={15}
 						>
-					<img src={stat} className = "iconAU" />
-					<Typography gutterBottom>
-						Take advantage of the variety of statistics for your purposes.
-					</Typography>
-					</Grid>
-					<Grid
-							xs={6} sm={3}
+							<img alt="stat" src={stat} className="iconAU" />
+							<Typography gutterBottom>
+								Take advantage of the variety of statistics for your purposes.
+							</Typography>
+						</Grid>
+						<Grid
+							sm={3}
 							className="layer"
 							container
 							direction="column"
 							justify="space-around"
 							spacing={15}
 						>
-					<img  src={filters} className = "iconAU" />
-					<Typography gutterBottom>
-						Play with filters and check the nice heatmap rendering!
-					</Typography>
+							<img alt="filters" src={filters} className="iconAU" />
+							<Typography gutterBottom>
+								Play with filters and check the nice heatmap rendering!
+							</Typography>
+						</Grid>
 					</Grid>
-					</Grid>
-					<Typography gutterBottom align = "center" >
-						We hope you enjoy and benefit using the tool!
-						Thanks for the support.
+					<Typography gutterBottom align="center">
+						We hope you enjoy and benefit using the tool! Thanks for the
+						support.
 					</Typography>
-		
-					<Typography gutterBottom align = "center" >
+
+					<Typography gutterBottom align="center">
 						Big thanks to Dr. Eli Yitzhak for the continued support.
 					</Typography>
-					<div align = "center">
-					<a   href = "https://github.com/TomDorani/geoSocialApp">https://github.com/geoSocialApp</a>
+					<div align="center">
+						<a href="https://github.com/TomDorani/geoSocialApp">
+							https://github.com/geoSocialApp
+						</a>
 					</div>
 				</DialogContent>
 				{/* <DialogActions>

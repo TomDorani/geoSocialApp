@@ -88,15 +88,14 @@
 }
 
 .gard {
-	display: none;
+	height: 0;
 }
 
-.iconAU{
-
-	height: 100px;
+.iconAU {
+	height: 110px;
 	width: 100px;
 	padding-bottom: 10%;
 }
-.ASbody{
+.ASbody {
 	padding-top: 7%;
 }
