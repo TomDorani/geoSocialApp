@@ -10,7 +10,6 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import "../CSS/Drawer.css";
@@ -19,6 +18,7 @@ import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
 import AboutUs from "./AboutUs";
 import Box from "@material-ui/core/Box";
+import whitelogo from "../logo/white.svg";
 
 const SideBar = (props) => {
 	//console.log("sidebar props", props);
@@ -70,6 +70,7 @@ const SideBar = (props) => {
 			}}
 		>
 			<div className={classes.drawerHead}>
+				<img alt="filters" src={whitelogo} height="30px" className="wplogo" />
 				<Typography
 					variant="h6"
 					noWrap

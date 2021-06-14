@@ -12,6 +12,7 @@ import filters from "../Icons/Filters.png";
 import stat from "../Icons/stat.jpg";
 import Grid from "@material-ui/core/Grid";
 import "../CSS/Drawer.css";
+import whitelogo from "../logo/purple.svg";
 
 const styles = (theme) => ({
 	root: {
@@ -24,22 +25,39 @@ const styles = (theme) => ({
 		top: theme.spacing(1),
 		color: theme.palette.grey[500],
 	},
+	hed: {
+		margin: 3,
+		padding: theme.spacing(2),
+	},
 });
 
 const DialogTitle = withStyles(styles)((props) => {
 	const { children, classes, onClose, ...other } = props;
 	return (
 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
-			<Typography variant="h6">{children}</Typography>
-			{onClose ? (
-				<IconButton
-					aria-label="close"
-					className={classes.closeButton}
-					onClick={onClose}
-				>
-					<CloseIcon />
-				</IconButton>
-			) : null}
+			<Grid
+				container
+				direction="row"
+				justify="center"
+				alignItems="center"
+				className={classes.hed}
+			>
+				<Grid item className="pplogo">
+					<img alt="filters" src={whitelogo} height="30px" />
+				</Grid>
+				<Grid item>
+					<Typography variant="h6">{children}</Typography>
+				</Grid>
+				{onClose ? (
+					<IconButton
+						aria-label="close"
+						className={classes.closeButton}
+						onClick={onClose}
+					>
+						<CloseIcon />
+					</IconButton>
+				) : null}
+			</Grid>
 		</MuiDialogTitle>
 	);
 });
@@ -76,6 +94,7 @@ export default function AboutUs() {
 					id="customized-dialog-title"
 					onClose={handleClose}
 				>
+					{" "}
 					Select, Analyse and Explore Geo-Tweets insight
 				</DialogTitle>
 				<DialogContent dividers>
