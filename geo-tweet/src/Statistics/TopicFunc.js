@@ -28,7 +28,9 @@ const CountryFunc = (props) => {
 		//console.log("hey click", e);
 		//console.log("bar", e.datum.x);
 		setClickedFlag(true);
-		setBar(e.datum.x);
+		let t = Object.keys(topic).find((key) => topic[key] === e.datum.x);
+
+		setBar(t);
 	};
 
 	const handleChange = (panel) => (event, isExpanded) => {

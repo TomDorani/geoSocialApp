@@ -10,7 +10,12 @@ class Sent extends React.Component {
 	};
 
 	componentDidMount() {
-		//console.log("mount");
+		console.log(
+			"senti",
+			this.props.country,
+			this.props.search,
+			this.props.flag
+		);
 		fetch(
 			`https://ancient-retreat-48472.herokuapp.com/api/${this.props.flag}/senti?search=${this.props.search}&${this.props.flag}=${this.props.country}`
 		)
