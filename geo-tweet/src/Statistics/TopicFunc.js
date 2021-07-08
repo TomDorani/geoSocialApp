@@ -7,6 +7,10 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Loader from "./../Components/Loader";
 import Box from "@material-ui/core/Box";
 
+/*
+statistics render by victory chart 
+ */
+
 const CountryFunc = (props) => {
 	//console.log("CountryFunc search", props.search.toString());
 

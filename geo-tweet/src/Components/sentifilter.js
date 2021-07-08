@@ -3,6 +3,10 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
 
+/*
+filter the tweets by sentimental class
+ */
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: "flex",

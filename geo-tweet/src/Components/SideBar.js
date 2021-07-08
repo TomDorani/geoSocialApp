@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,17 +9,19 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import "../CSS/Drawer.css";
 import Button from "@material-ui/core/Button";
 import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
-
 import UserGuide from "./UserGuide";
-
 import Box from "@material-ui/core/Box";
+
+/*
+sidebar component is the left drawer in the dashboard use to cusomize
+the search filter and to open statistics
+ */
 
 const SideBar = (props) => {
 	//console.log("sidebar props", props);

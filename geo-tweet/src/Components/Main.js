@@ -14,6 +14,10 @@ import { Grid } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
+/*
+the main component that conatin the map and side bar
+ */
+
 const theme = createMuiTheme({
 	palette: {
 		primary: {
@@ -39,6 +43,10 @@ const theme = createMuiTheme({
 });
 
 export default function Main() {
+	// search- filter word
+	// heatmap- active/inactive
+	//senti- ALL/MIXED/POSITIVE/NEGATIVE/NEUTRAL
+	//open- true/false
 	const [search, setSearch] = useState([]);
 	const [heatMap, setHeatMap] = useState(false);
 	const [senti, setSenti] = useState("ALL");

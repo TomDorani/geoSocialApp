@@ -3,6 +3,11 @@ import { VictoryPie } from "victory";
 import "../CSS/Drawer.css";
 import Loader from "./../Components/Loader";
 import Box from "@material-ui/core/Box";
+
+/*
+statistics render by victory chart 
+ */
+
 class Sent extends React.Component {
 	state = {
 		sent: {},

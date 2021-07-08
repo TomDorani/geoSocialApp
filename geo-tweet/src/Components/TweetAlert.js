@@ -5,6 +5,10 @@ import MuiAlert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import { makeStyles } from "@material-ui/core/styles";
 
+/*
+simple alert to show extra info on tweet while click on the icon
+ */
+
 function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
