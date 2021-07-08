@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,9 +15,14 @@ import "../CSS/Drawer.css";
 import Button from "@material-ui/core/Button";
 import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
-import AboutUs from "./AboutUs";
+import UserGuide from "./UserGuide";
 import Box from "@material-ui/core/Box";
 import whitelogo from "../logo/white.svg";
+
+/*
+sidebar component is the left drawer in the dashboard use to cusomize
+the search filter and to open statistics
+ */
 
 const SideBar = (props) => {
 	//console.log("sidebar props", props);
@@ -64,6 +68,8 @@ const SideBar = (props) => {
 		<Drawer
 			BackdropProps={{ invisible: true }}
 			anchor="left"
+			onEscapeKeyDown={props.closeDrawer}
+			onBackdropClick={props.closeDrawer}
 			open={props.open}
 			classes={{
 				paper: classes.paper,
@@ -156,7 +162,7 @@ const SideBar = (props) => {
 						<Accordion search={props.search}></Accordion>
 					</Grid>
 					<Grid item p={6}>
-						<AboutUs />
+						<UserGuide />
 					</Grid>
 				</Grid>
 			</Container>

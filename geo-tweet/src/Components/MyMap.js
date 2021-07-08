@@ -5,6 +5,10 @@ import Loader from "./Loader";
 import TweetAlert from "./TweetAlert";
 import Legend from "./Legend";
 
+/*
+my component is the main map by leaflet
+ */
+
 const MyMap = (state) => {
 	const [zoom, setZoom] = useState(3);
 	const [isload, setIsLoad] = useState(true);

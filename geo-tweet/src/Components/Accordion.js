@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.secondary,
 	},
 }));
-
+/*
+accordion component is the container for the  statistics
+ */
 export default function ControlledAccordions(state) {
 	//console.log("accordion ", state.search);
 	const classes = useStyles();

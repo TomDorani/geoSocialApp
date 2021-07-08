@@ -4,6 +4,11 @@ import HeatmapLayer from "react-leaflet-heatmap-layer";
 //import { Alert, AlertTitle } from "@material-ui/lab";
 // import MuiAlert from "@material-ui/lab/Alert";
 
+/*
+marker component crate and then drawen on the map layer contain all info for one marker:
+ twitter detail, meta data, color by santiment and icon by zoom
+ */
+
 const colorSentiMap = {
 	MIXED: "#ffff66",
 	NEGATIVE: "#e0544a",

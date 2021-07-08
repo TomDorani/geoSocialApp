@@ -5,6 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 
+/*
+loader component is simple loader animation for loading time
+ */
+
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
 	display: block;

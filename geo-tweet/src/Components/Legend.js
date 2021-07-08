@@ -2,6 +2,10 @@ import { MapControl, withLeaflet } from "react-leaflet";
 import L from "leaflet";
 import "./../CSS/Legend.css";
 
+/*
+legend component is simple html injection for the legend of the map
+ */
+
 const legendHtmlFor = () =>
 	[
 		"<h3>Sentimental Legend</h1>",
