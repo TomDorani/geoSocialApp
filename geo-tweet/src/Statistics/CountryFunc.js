@@ -73,7 +73,7 @@ const CountryFunc = (props) => {
 				</svg>
 				<VictoryChart
 					domainPadding={30}
-					style={{ tickLabels: { fontSize: 25, padding: 5 } }}
+					style={{ tickLabels: { fontSize: 25, padding: 2 } }}
 					padding={{ left: 80, right: 80, bottom: 50, top: 20 }}
 					height={385}
 					width={650}

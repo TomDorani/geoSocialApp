@@ -70,15 +70,7 @@ const DialogContent = withStyles((theme) => ({
 	},
 }))(MuiDialogContent);
 
-// eslint-disable-next-line no-unused-vars
-const DialogActions = withStyles((theme) => ({
-	root: {
-		margin: 0,
-		padding: theme.spacing(1),
-	},
-}))();
-
-export default function AboutUs() {
+export default function UserGuide() {
 	const [open, setOpen] = React.useState(false);
 
 	const handleClickOpen = () => {
