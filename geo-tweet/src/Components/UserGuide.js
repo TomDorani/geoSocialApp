@@ -10,6 +10,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import page from "../Icons/page.png";
 import view from "../Icons/view.png";
+import filter from "../Icons/filter.png";
+
 import stat from "../Icons/stat.jpg";
 import Grid from "@material-ui/core/Grid";
 import "../CSS/Drawer.css";
@@ -74,13 +76,13 @@ export default function AboutUs() {
 	return (
 		<div>
 			<Button variant="outlined" color="primary" onClick={handleClickOpen}>
-				About Us
+				Manual
 			</Button>
 			<Dialog
 				onClose={handleClose}
 				aria-labelledby="customized-dialog-title"
 				open={open}
-				maxWidth = "md"
+				maxWidth = "lg"
 			>
 				<DialogTitle align = "center" id="customized-dialog-title" onClose={handleClose}>
 					Geo-Tweet
@@ -88,8 +90,11 @@ export default function AboutUs() {
 				<DialogContent dividers>
 
 					<Typography gutterBottom align = "center" >
-					Geo-Tweet is a tool that illustrates the capabilities of gathering and analyzing information while focusing on geographical location
+                        Geo-Tweet is a tool that illustrates the capabilities of gathering and analyzing information while focusing on geographical location.
 					</Typography>
+                    <Typography gutterBottom align = "center" >
+					    So what exactly does Geo-Tweet offer?  
+                    </Typography>
 					<Grid
 					className="ASbody"
 					container
@@ -99,7 +104,7 @@ export default function AboutUs() {
 					// spacing={2}
 					>
 						<Grid
-							xs={6} sm={3}
+							xs={5} sm={2}
 							className="layer"
 							container
 							direction="column"
@@ -108,11 +113,24 @@ export default function AboutUs() {
 						>
 					<img src={page} className = "iconAU" />
 					<Typography gutterBottom>
-						This page displays geolocalized tweets delivered by public twitter stream API.
+                        Geo-Tweet shows tweets placed on a map and classified according to their sentimental value
 					</Typography>
 					</Grid>
 					<Grid
-							xs={6} sm={3}
+							xs={6} sm={2}
+							className="layer"
+							container
+							direction="column"
+							justify="space-around"
+							spacing={15}
+						>
+					<img src={filter} className = "iconAU" />
+					<Typography gutterBottom>
+                        Use the sidebar to filter tweets by keywords and sentimental value
+					</Typography>
+					</Grid>
+                    <Grid
+							xs={6} sm={2}
 							className="layer"
 							container
 							direction="column"
@@ -121,11 +139,11 @@ export default function AboutUs() {
 						>
 					<img src={stat} className = "iconAU" />
 					<Typography gutterBottom>
-						Take advantage of the variety of statistics for your purposes.
+                        Take advantage of the variety of statistics offered by Geo-Tweet to better understand the trends
 					</Typography>
 					</Grid>
 					<Grid
-							xs={6} sm={3}
+							xs={6} sm={2}
 							className="layer"
 							container
 							direction="column"
@@ -134,7 +152,7 @@ export default function AboutUs() {
 						>
 					<img  src={view} className = "iconAU" />
 					<Typography gutterBottom>
-						Play with filters and check the nice heatmap rendering!
+                        The map view can be switched between a sentimental view and a heat map view as needed.
 					</Typography>
 					</Grid>
 					</Grid>
