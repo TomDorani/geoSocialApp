@@ -53,6 +53,7 @@ const DialogContent = withStyles((theme) => ({
 	},
 }))(MuiDialogContent);
 
+// eslint-disable-next-line no-unused-vars
 const DialogActions = withStyles((theme) => ({
 	root: {
 		margin: 0,
@@ -113,7 +114,7 @@ export default function AboutUs() {
 							justify="space-around"
 							spacing={15}
 						>
-							<img src={page} className="iconAU" />
+							<img src={page} alt="hey" className="iconAU" />
 							<Typography gutterBottom>
 								Geo-Tweet shows tweets placed on a map and classified according
 								to their sentimental value
@@ -128,7 +129,7 @@ export default function AboutUs() {
 							justify="space-around"
 							spacing={15}
 						>
-							<img src={filter} className="iconAU" />
+							<img src={filter} alt="hey" className="iconAU" />
 							<Typography gutterBottom>
 								Use the sidebar to filter tweets by keywords and sentimental
 								value
@@ -143,7 +144,7 @@ export default function AboutUs() {
 							justify="space-around"
 							spacing={15}
 						>
-							<img src={stat} className="iconAU" />
+							<img src={stat} alt="hey" className="iconAU" />
 							<Typography gutterBottom>
 								Take advantage of the variety of statistics offered by Geo-Tweet
 								to better understand the trends
@@ -158,7 +159,7 @@ export default function AboutUs() {
 							justify="space-around"
 							spacing={15}
 						>
-							<img src={view} className="iconAU" />
+							<img src={view} alt="hey" className="iconAU" />
 							<Typography gutterBottom>
 								The map view can be switched between a sentimental view and a
 								heat map view as needed.
