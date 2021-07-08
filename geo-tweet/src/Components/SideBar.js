@@ -17,7 +17,7 @@ import "../CSS/Drawer.css";
 import Button from "@material-ui/core/Button";
 import Accordion from "./Accordion";
 import SentiFilter from "./sentifilter";
-import AboutUs from "./AboutUs";
+
 import UserGuide from "./UserGuide";
 
 import Box from "@material-ui/core/Box";
@@ -157,9 +157,7 @@ const SideBar = (props) => {
 						<Accordion search={props.search}></Accordion>
 					</Grid>
 					<Grid item p={6}>
-						<AboutUs />
 						<UserGuide />
-
 					</Grid>
 				</Grid>
 			</Container>
