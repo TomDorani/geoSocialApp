@@ -66,6 +66,8 @@ const SideBar = (props) => {
 		<Drawer
 			BackdropProps={{ invisible: true }}
 			anchor="left"
+			onEscapeKeyDown={props.closeDrawer}
+			onBackdropClick={props.closeDrawer}
 			open={props.open}
 			classes={{
 				paper: classes.paper,
